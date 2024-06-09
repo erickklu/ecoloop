@@ -137,8 +137,8 @@ class EntrySeeder extends Seeder
                     'type'     => 'belongsTo',
                     'column'   => 'user_id',
                     'key'      => 'id',
-                    'table'    => $slug,
-                    'label'    => null
+                    'table'    => "users",
+                    'label'    => 'name'
                 ]
             ])->save();
         }

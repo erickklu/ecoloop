@@ -10,8 +10,6 @@ class Entry extends Model
 {
     use HasFactory;
 
-    // protected $table = "entries";
-
     protected static function boot()
     {
         parent::boot();
@@ -28,5 +26,15 @@ class Entry extends Model
         }
 
         return $query->where('user_id', Auth::user()->id);
+    }
+
+    function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getUserBrowseAttribute()
+    {
+        return "sss";
     }
 }
