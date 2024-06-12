@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EntryController;
 use Illuminate\Support\Facades\Route;
 use TCG\Voyager\Facades\Voyager;
 
@@ -15,8 +16,12 @@ use TCG\Voyager\Facades\Voyager;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.home');
 });
+
+Route::get('/publicaciones', [EntryController::class, 'ViewEntrys'])->name('publicaciones');
+Route::get('/publicaciones/{id}', [EntryController::class, 'DetailEntry'])->name('publicaciones.detalle');
+Route::get('/publicaciones/categoria/{id}', [EntryController::class, 'filterByCategory'])->name('publicaciones.categoria');
 
 
 Route::group(['prefix' => 'admin'], function () {

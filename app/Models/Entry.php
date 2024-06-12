@@ -33,6 +33,11 @@ class Entry extends Model
         return $this->belongsTo(User::class);
     }
 
+    function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function getUserBrowseAttribute()
     {
         return "sss";
