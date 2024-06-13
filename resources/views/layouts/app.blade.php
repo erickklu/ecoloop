@@ -8,13 +8,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    @vite('resources/sass/app.scss')
+
     <title>@yield("title")</title>
-    <!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> -->
     
     @stack("css")
     @yield('styles')
-    <style>
-        body,
+    <!-- <style>
+       /*  body,
         html {
             margin: 0;
             padding: 0;
@@ -23,8 +25,8 @@
         .container {
             padding: 0 80px;
             padding-bottom: 80px;
-        }
-    </style>
+        } */
+    </style> -->
 </head>
 
 <body>

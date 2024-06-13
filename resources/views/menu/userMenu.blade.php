@@ -7,9 +7,6 @@
     <div class="navbar-brand">
         <a href="#">EcoLoop</a>
     </div>
-    <div class="navbar-toggle" id="navbarToggle">
-        ☰
-    </div>
     <ul class="navbar-menu" id="navbarMenu">
         @php
             if (Voyager::translatable($items)) {
@@ -50,97 +47,6 @@
         @endif
     </ul>
 </nav>
-
-<style>
-    /* Estilos del navbar */
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 164px;
-        /* background-color: #333; */
-        padding: 0 80px;
-        /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
-        font-size: 20px;
-        font-weight: 500;
-        font-family: 'Inter', sans-serif;
-    }
-
-    .navbar-brand a {
-        color: black;
-        text-decoration: none;
-        /* font-size: 20px; */
-    }
-
-    .navbar-menu {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-    }
-
-    .navbar-menu li {
-        margin-left: 20px;
-    }
-
-    .navbar-menu a {
-        color: black;
-        text-decoration: none;
-        padding: 14px 20px;
-        display: block;
-        border-radius: 8px;
-        /* font-size: 20px; */
-    }
-
-    .nav-link.login {
-        background-color: #ABC270;
-        font-size: 16px;
-        color: white;
-    }
-
-    .nav-link.login:hover {
-        background-color: #94A861;
-    }
-
-    .navbar-menu a:hover {
-        /* background-color: #575757; */
-    }
-
-
-
-
-    /* celular */
-    .navbar-toggle {
-        display: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-        .navbar-menu {
-            flex-direction: column;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background-color: #333;
-            display: none;
-        }
-
-        .navbar-menu.show {
-            display: flex;
-        }
-
-        .navbar-menu li {
-            margin: 0;
-        }
-
-        .navbar-toggle {
-            display: block;
-        }
-    }
-</style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
