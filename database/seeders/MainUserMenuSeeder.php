@@ -35,5 +35,21 @@ class MainUserMenuSeeder extends Seeder
                 'order'      => 1,
             ])->save();
         }
+        
+        $menuItem = MenuItem::firstOrNew([
+            'menu_id' => $menu->id,
+            'title'   => "Publicaciones",
+            'url'     => '/publicaciones',
+            'route'   => 'publicaciones',
+        ]);
+        if (!$menuItem->exists) {
+            $menuItem->fill([
+                'target'     => '_self',
+                'icon_class' => null,
+                'color'      => null,
+                'parent_id'  => null,
+                'order'      => 2,
+            ])->save();
+        }
     }
 }
