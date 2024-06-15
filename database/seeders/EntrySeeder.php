@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 use TCG\Voyager\Models\DataRow;
 use TCG\Voyager\Models\DataType;
 use TCG\Voyager\Models\Menu;
@@ -72,6 +73,52 @@ class EntrySeeder extends Seeder
                 'add'          => 1,
                 'delete'       => 1,
                 'order'        => $column_index++,
+                'details'      => [
+                    'display' => [
+                        'width' => '6'
+                    ]
+                ]
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($modelType, 'category_id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'number',
+                'display_name' => 'Categoria',
+                'required'     => 1,
+                'browse'       => 0,
+                'read'         => 0,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'order'        => $column_index++,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($modelType, 'category');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'relationship',
+                'display_name' => 'Categoría',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'order'        => $column_index++,
+                'details'      => [
+                    'display' => [
+                        'width' => '6'
+                    ],
+                    'model'    => 'App\\Models\\Category',
+                    'type'     => 'belongsTo',
+                    'column'   => 'category_id',
+                    'key'      => 'id',
+                    'table'    => "categories",
+                    'label'    => 'name'
+                ]
             ])->save();
         }
 
@@ -110,13 +157,18 @@ class EntrySeeder extends Seeder
             $dataRow->fill([
                 'type'         => 'number',
                 'display_name' => 'Usuario',
-                'required'     => 1,
-                'browse'       => 0,
-                'read'         => 0,
-                'edit'         => 0,
-                'add'          => 0,
-                'delete'       => 0,
+                'required'     => 0,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
                 'order'        => $column_index++,
+                'details'      => [
+                    'display'  => [
+                        'id'   => 'formfield-user_id'
+                    ]
+                ]
             ])->save();
         }
 
@@ -128,7 +180,7 @@ class EntrySeeder extends Seeder
                 'required'     => 0,
                 'browse'       => 1,
                 'read'         => 1,
-                'edit'         => 0,
+                'edit'         => 1,
                 'add'          => 0,
                 'delete'       => 0,
                 'order'        => $column_index++,
@@ -138,7 +190,7 @@ class EntrySeeder extends Seeder
                     'column'   => 'user_id',
                     'key'      => 'id',
                     'table'    => "users",
-                    'label'    => 'name'
+                    'label'    => 'name',
                 ]
             ])->save();
         }
