@@ -42,4 +42,9 @@ class User extends \TCG\Voyager\Models\User
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    function favoriteEntries()
+    {
+        return $this->belongsToMany(Entry::class, "favorites", "entry_id", "user_id");
+    }
 }
