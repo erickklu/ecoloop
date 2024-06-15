@@ -3,13 +3,13 @@
 @section("content")
 <div class="product-detail-container">
     <div class="product-image">
-        <img style="width:625px;" src="{{ Voyager::image($publicacion->image) }}" class="card-img-top" alt="...">
+        <img style="width:625px;" src="{{ Voyager::image($publicacion->image) }}" alt="...">
     </div>
     <div class="product-details">
         <h1 class="product-title">{{ $publicacion->title }}</h1>
         <p class="product-user">Por {{ $publicacion->user->name }}</p>
         <p class="product-description">{!! nl2br(strip_tags($publicacion->description)) !!}</p>
-        <a href="{{ route('publicaciones') }}" class="btn btn-primary">Agregar al carrito</a>
+        <a href="{{ route('publicaciones') }}" class="btn-carrito">Agregar al carrito</a>
     </div>
 </div>
 

@@ -47,7 +47,7 @@
         @endif
     </ul>
 </nav>
-
+<!-- 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var navbarToggle = document.getElementById('navbarToggle');
@@ -57,4 +57,4 @@
             navbarMenu.classList.toggle('show');
         });
     });
-</script>
+</script> -->

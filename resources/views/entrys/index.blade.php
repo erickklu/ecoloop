@@ -21,17 +21,21 @@
         <div class="publicacion-card">
             <a href="{{ route('publicaciones.detalle', $publicacion->id) }}">
                 <div class="image-container">
-                    <img src="{{ Voyager::image($publicacion->image) }}" class="card-img-top" alt="...">
+                    <img src="{{ Voyager::image($publicacion->image) }}" alt="...">
 
                 </div>
-                <div class="card-content">
-                    <p class="card-title">{{ $publicacion->title }}</p>
+                <div class="publicacion-content">
+                    <p class="publicacion-title">{{ $publicacion->title }}</p>
                     <!-- <p class="card-text">{!! nl2br(strip_tags($publicacion->description)) !!}</p> -->
-                    <p class="card-text">{{ $publicacion->category->name }}</p>
+                    <p class="publicacion-text">{{ $publicacion->category->name }}</p>
                 </div>
             </a>
         </div>
-
     @endforeach
+
 </div>
+<div class="d-flex justify-content-center mt-4">
+    {{ $publicaciones->links('pagination::bootstrap-4') }}
+</div>
+
 @endsection

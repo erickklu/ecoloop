@@ -11,7 +11,7 @@ class EntryController extends VoyagerBaseController
 {
     public function ViewEntrys()
     {
-        $publicaciones = Entry::all();
+        $publicaciones = Entry::orderBy('created_at', 'desc')->paginate(9);
         $categorias = Category::all();
         return view('entrys.index', compact('publicaciones', 'categorias'));
     }

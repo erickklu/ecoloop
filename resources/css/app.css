@@ -1,19 +1,36 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
 /* app.css */
 
-/* Reset */
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Tipografía general */
 body, html {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
 }
 
-/* Contenedor general */
 .container {
     padding: 0 20px;
+}
+ */
+
+ .page-link {
+    color: black; 
+    /* border: 1px solid #28a745; */
+    border: none;
+}
+
+.page-item.active .page-link {
+    background-color: #FDA769;
+    border-color: none; 
+}
+
+.page-link:hover {
+    background-color:  #f79854; 
+    border-color: none; 
+    color: white;
 }
