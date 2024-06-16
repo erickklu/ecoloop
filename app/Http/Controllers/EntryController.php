@@ -27,8 +27,8 @@ class EntryController extends VoyagerBaseController
 {
     $publicacion = Entry::with('category')->findOrFail($id);
     $relacionadas = Entry::where('category_id', $publicacion->category_id)
-                          ->where('id', '!=', $id) // Excluir la publicación actual
-                          ->take(4) // Limitar el número de publicaciones relacionadas, puedes ajustar el número según tu diseño
+                          ->where('id', '!=', $id) 
+                          ->take(4) 
                           ->get();
 
     return view('entrys.detalle', compact('publicacion', 'relacionadas'));
