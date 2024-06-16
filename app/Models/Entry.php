@@ -9,18 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Entry extends Model
 {
-    use HasFactory;
+    use HasFactory; 
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($entry) {
-            $entry->user_id = Auth::id();
-        });
-    }
 
     public function scopeOwnEntries($query)
     {

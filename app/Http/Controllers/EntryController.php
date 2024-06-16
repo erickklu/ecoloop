@@ -6,9 +6,18 @@ use Illuminate\Http\Request;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use App\Models\Entry;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class EntryController extends VoyagerBaseController
 {
+    public function store(Request $request)
+    {
+
+        $request->merge(['user_id' => Auth::id()]);
+        
+        return parent::store($request);
+    }
+
     public function ViewEntrys()
     {
         $publicaciones = Entry::orderBy('created_at', 'desc')->paginate(9);
@@ -16,7 +25,7 @@ class EntryController extends VoyagerBaseController
         return view('entrys.index', compact('publicaciones', 'categorias'));
     }
 
-   /*  public function DetailEntry($id)
+    /*  public function DetailEntry($id)
     {
         $publicacion = Entry::findOrFail($id);
 
@@ -31,13 +40,13 @@ class EntryController extends VoyagerBaseController
                           ->take(4) 
                           ->get();
 
-    return view('entrys.detalle', compact('publicacion', 'relacionadas'));
-}
+        return view('entrys.detalle', compact('publicacion', 'relacionadas'));
+    }
 
     public function filterByCategory($categoryId)
     {
         $publicaciones = Entry::where('category_id', $categoryId)->get();
-        $categorias = Category::all(); 
+        $categorias = Category::all();
 
         return view('entrys.index', compact('publicaciones', 'categorias', 'categoryId'));
     }
