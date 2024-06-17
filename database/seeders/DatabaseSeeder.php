@@ -18,8 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoriesTableSeeder::class);
         $this->call(EntrySeeder::class);
         $this->call(UsersTableSeeder::class);
-
         $this->call(MainUserMenuSeeder::class);
+        $this->call(RequestedEntrySeeder::class);
+
 
         Entry::factory(100)->create();
     }
