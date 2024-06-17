@@ -46,12 +46,17 @@ class User extends \TCG\Voyager\Models\User
         'password' => 'hashed',
     ];
 
+    public function entries()
+    {
+        return $this->hasMany(Entry::class);
+    }
+
     /**
      * Get the favorite User Entries. 
      */
     function favoriteEntries()
     {
-        return $this->belongsToMany(Entry::class, "favorites", "entry_id", "user_id");
+        return $this->belongsToMany(Entry::class, "favorites", "user_id", "entry_id");
     }
 
     /**

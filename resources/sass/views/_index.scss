@@ -98,3 +98,20 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+.page-link {
+    color: black;
+    /* border: 1px solid #28a745; */
+    border: none;
+}
+
+.page-item.active .page-link {
+    background-color: #FDA769;
+    border-color: none;
+}
+
+.page-link:hover {
+    background-color: #f79854;
+    border-color: none;
+    color: white;
+}

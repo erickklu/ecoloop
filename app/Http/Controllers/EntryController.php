@@ -45,7 +45,7 @@ class EntryController extends VoyagerBaseController
 
     public function filterByCategory($categoryId)
     {
-        $publicaciones = Entry::where('category_id', $categoryId)->get();
+        $publicaciones = Entry::where('category_id', $categoryId)->paginate(9);
         $categorias = Category::all();
 
         return view('entrys.index', compact('publicaciones', 'categorias', 'categoryId'));

@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-    @vite(['resources/sass/app.scss'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <title>@yield("title")</title>
     
@@ -31,7 +31,7 @@
 
 <body>
     {!! menu('user', 'menu.userMenu') !!}
-    <div class="container">
+    <div class="contenedor">
         @yield('content')
     </div>
     

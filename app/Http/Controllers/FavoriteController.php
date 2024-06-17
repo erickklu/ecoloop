@@ -10,25 +10,30 @@ use App\Models\Favorite;
 class FavoriteController extends Controller
 {
     public function add($id)
-{
-    $userId = Auth::id(); // Obtenemos el ID del usuario autenticado
+    {
+        $userId = Auth::id();
 
-    // Verificamos si ya existe un registro de favorito para esta publicación y usuario
-    $favoriteExistente = Favorite::where('user_id', $userId)
-        ->where('entry_id', $id)
-        ->first();
+        $favoriteExistente = Favorite::where('user_id', $userId)
+            ->where('entry_id', $id)
+            ->first();
 
-    if ($favoriteExistente) {
-        // Si el favorito ya existe, lo eliminamos
-        $favoriteExistente->delete();
-    } else {
-        // Si el favorito no existe, lo creamos
-        Favorite::create([
-            'user_id' => $userId,
-            'entry_id' => $id
-        ]);
+        if ($favoriteExistente) {
+            $favoriteExistente->delete();
+        } else {
+            Favorite::create([
+                'user_id' => $userId,
+                'entry_id' => $id
+            ]);
+        }
+
+        return back();
+    }
+    public function misFavoritos()
+    {
+        $usuario = auth()->user();
+        $publicacionesFavoritas = $usuario->favoriteEntries()->paginate(6);
+
+        return view('favorites.index', compact('publicacionesFavoritas'));
     }
 
-    return back();
-}
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EntryController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use TCG\Voyager\Facades\Voyager;
 
@@ -24,6 +25,10 @@ Route::get('/publicaciones', [EntryController::class, 'ViewEntrys'])->name('publ
 Route::get('/publicaciones/{id}', [EntryController::class, 'DetailEntry'])->name('publicaciones.detalle');
 Route::get('/publicaciones/categoria/{id}', [EntryController::class, 'filterByCategory'])->name('publicaciones.categoria');
 Route::post('/publicaciones/{id}/intereses', [FavoriteController::class, 'add'])->name('publicaciones.favorita');
+Route::get('/intereses', [FavoriteController::class, 'misFavoritos'])->name('favoritos');
+Route::get('/perfil/{id}', [UserController::class, 'showUser'])->name('perfil');
+Route::post('/calificar/{id}', [UserController::class, 'calificar'])->name('calificar');
+
 
 
 Route::group(['prefix' => 'admin'], function () {

@@ -31,30 +31,40 @@
                 </li>
         @endforeach
         @if (Auth::check())
-            <li class="nav-item">
-                <a class="nav-link login" style="padding: 0;">
-                    <form action="{{ route('voyager.logout') }}" method="POST" style="margin: 0;">
-                        @csrf
-                        <button style="padding: 14px 20px;border-radius: 8px; border: none;" type="submit" class="nav-link login">Hola, {{ Auth::user()->name }}</button>
-                    </form>
+            <li class="nav-item dropdown">
+                <a class="nav-link login" id="userDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" style="padding: 0;">
+                        <button
+                            class="nav-link login dropdown-toggle" style="padding: 14px 20px; border-radius: 8px; border: none; background-color: inherit; font-size: inherit; color: inherit;"
+                            type="submit">
+                            Hola, {{ Auth::user()->name }}
+                        </button>
+    
                 </a>
-
+                <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                    <li>
+                        <a class="dropdown-item" href="{{ route('voyager.profile') }}">Perfil</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('favoritos') }}">Mis favoritos</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('voyager.logout') }}"
+                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                            Cerrar sesión
+                        </a>
+                    </li>
+                </ul>
             </li>
         @else
             <li class="nav-item">
                 <a class="nav-link login" href="{{ route('voyager.login') }}">Iniciar sesión</a>
             </li>
         @endif
+
+        <form id="logout-form" action="{{ route('voyager.logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
+
     </ul>
 </nav>
-<!-- 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var navbarToggle = document.getElementById('navbarToggle');
-        var navbarMenu = document.getElementById('navbarMenu');
-
-        navbarToggle.addEventListener('click', function () {
-            navbarMenu.classList.toggle('show');
-        });
-    });
-</script> -->
