@@ -10,13 +10,29 @@
             <p class="user-name">{{ $usuario->name }}</p>
             <p class="user-email">{{ $usuario->email }}</p>
             <div class="user-numbers">
-                <div>
+                <div class="score">
                     <p>{{ number_format($usuario->score(), 1) }} <i class="bi bi-star-fill"></i></p>
+                    <p class="text">Puntos</p>
                 </div>
-                <div>
-                    <p>{{ $usuario->entries()->count() }} publicaciones</p>
+                <div class="entries">
+                    <p>{{ $usuario->entries()->count() }}</p>
+                    <p class="text">Posts</p>
                 </div>
             </div>
+            <div class="rating-form">
+                <form action="{{ route('calificar', $usuario->id) }}" method="POST">
+                    @csrf
+                    <label for="rating">Califica este usuario:</label>
+                    <div class="rating">
+                        @for ($i = 5; $i >= 1; $i--)
+                            <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }} />
+                            <label for="star{{ $i }}" title="{{ $i }} estrellas"><i class="bi bi-star-fill"></i></label>
+                        @endfor
+                    </div>
+                    <button class="btn-carrito" type="submit">Enviar Calificación</button>
+                </form>
+            </div>
+
 
         </div>
     </div>
@@ -40,17 +56,5 @@
         </div>
     </div>
 </div>
-<div class="rating-form">
-    <form action="{{ route('calificar', $usuario->id) }}" method="POST">
-        @csrf
-        <label for="rating">Califica este usuario:</label>
-        <div class="rating">
-            @for ($i = 5; $i >= 1; $i--)
-                <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }} />
-                <label for="star{{ $i }}" title="{{ $i }} estrellas"><i class="bi bi-star-fill"></i></label>
-            @endfor
-        </div>
-        <button type="submit">Enviar Calificación</button>
-    </form>
-</div>
+
 @endsection

@@ -35,12 +35,13 @@ class EntryController extends VoyagerBaseController
     public function DetailEntry($id)
 {
     $publicacion = Entry::with('category')->findOrFail($id);
+    $favoritas = auth()->user()->favoriteEntries->pluck('id')->toArray();
     $relacionadas = Entry::where('category_id', $publicacion->category_id)
                           ->where('id', '!=', $id) 
                           ->take(4) 
                           ->get();
 
-        return view('entrys.detalle', compact('publicacion', 'relacionadas'));
+        return view('entrys.detalle', compact('publicacion', 'relacionadas', 'favoritas'));
     }
 
     public function filterByCategory($categoryId)

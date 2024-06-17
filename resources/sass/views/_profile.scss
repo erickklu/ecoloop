@@ -4,18 +4,26 @@
     gap: 60px;
 
     .user-info {
-        flex: 0 0 300px; 
+        flex: 0 0 300px;
         position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         .user-details {
             position: sticky;
-            top: 20px; 
+            top: 20px;
             background: #fff;
             padding: 20px;
             border-radius: 8px;
             /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
             /* box-shadow: -2px 2px 104px -9px rgba(0,0,0,0.31); */
-            box-shadow: -2px 2px 51px 18px rgba(0, 0, 0, 0.1);
+            /* box-shadow: -2px 2px 51px 18px rgba(0, 0, 0, 0.1); */
+            box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.17);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
 
             .user-name {
                 font-size: 20px;
@@ -33,27 +41,33 @@
 
             .user-numbers {
                 display: flex;
-                justify-content: space-between; 
-                margin-top: 10px; 
+                justify-content: space-between;
+                gap: 20px;
             }
-            
-            .user-numbers > div {
-                display: flex; 
-                align-items: center;
-            }
-            
-            .user-numbers p {
-                margin-right: 30px; 
-                margin-left: 10px;
+
+            .user-numbers .score,
+            .user-numbers .entries {
+                text-align: center;
+                width: 50%;
+
+                p {
+                    margin-bottom: 1px;
+                    font-weight: bold;
+                }
+
+                .text{
+                    color: #828282;
+                    font-weight: 300;
+                }
             }
         }
     }
 
     .user-publications {
-        flex: 1; 
+        flex: 1;
         overflow-y: auto;
-        max-height: 100vh; 
-        padding-left: 20px; 
+        max-height: 100vh;
+        padding-left: 20px;
 
         .cards-container {
             display: flex;
@@ -140,6 +154,25 @@
         i {
             margin-right: 5px;
             color: #ddd;
+        }
+    }
+
+    .btn-carrito {
+        font-size: 1em;
+        color: #fff;
+        background-color: #473C33;
+        border-radius: 4px;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        width: 100%;
+        box-sizing: border-box;
+        height: 30px;
+        line-height: 32px;
+        border: none;
+
+        &:hover {
+            background-color: #40362e;
         }
     }
 }
