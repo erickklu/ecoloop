@@ -87,11 +87,11 @@ class EntrySeeder extends Seeder
                 'type'         => 'number',
                 'display_name' => 'Categoria',
                 'required'     => 1,
-                'browse'       => 0,
-                'read'         => 0,
-                'edit'         => 0,
-                'add'          => 0,
-                'delete'       => 0,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
                 'order'        => $column_index++,
             ])->save();
         }
