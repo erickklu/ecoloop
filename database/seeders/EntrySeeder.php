@@ -75,7 +75,7 @@ class EntrySeeder extends Seeder
                 'order'        => $column_index++,
                 'details'      => [
                     'display' => [
-                        'width' => '6'
+                        'width' => '4'
                     ]
                 ]
             ])->save();
@@ -110,7 +110,7 @@ class EntrySeeder extends Seeder
                 'order'        => $column_index++,
                 'details'      => [
                     'display' => [
-                        'width' => '6'
+                        'width' => '4'
                     ],
                     'model'    => 'App\\Models\\Category',
                     'type'     => 'belongsTo',
@@ -118,6 +118,31 @@ class EntrySeeder extends Seeder
                     'key'      => 'id',
                     'table'    => "categories",
                     'label'    => 'name'
+                ]
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($modelType, 'state');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'select_dropdown',
+                'display_name' => 'Estado',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'order'        => $column_index++,
+                'details'      => [
+                    'display' => [
+                        'width' => '4'
+                    ],
+                    'default'  => 'NO DISPONIBLE',
+                    'options'  =>[
+                        'NO DISPONIBLE' => 'NO DISPONIBLE',
+                        'DISPONIBLE'    => 'DISPONIBLE'
+                    ]
                 ]
             ])->save();
         }
