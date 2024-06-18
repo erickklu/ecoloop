@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('entries', function (Blueprint $table) {
             $table->id();
             $table->string("title");
-            $table->text("description");
+            $table->text("description")->nullable();
             $table->string("image");
             $table->string("state")->default("NO DISPONIBLE");
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade");

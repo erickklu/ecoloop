@@ -23,8 +23,8 @@ class MainUserMenuSeeder extends Seeder
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
             'title'   => "Home",
-            'url'     => '/',
-            'route'   => '',
+            'url'     => null,
+            'route'   => 'home',
         ]);
         if (!$menuItem->exists) {
             $menuItem->fill([

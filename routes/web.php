@@ -20,7 +20,7 @@ use TCG\Voyager\Facades\Voyager;
 
 Route::get('/', function () {
     return view('home.home');
-});
+})->name("home");
 
 Route::get('/publicaciones', [EntryController::class, 'ViewEntrys'])->name('publicaciones');
 Route::get('/publicaciones/{id}', [EntryController::class, 'DetailEntry'])->name('publicaciones.detalle');

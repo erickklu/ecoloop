@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use App\VoyagerActions\RequestedEntryAction;
+use App\VoyagerActions\RequestedEntryUserAction;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use TCG\Voyager\Facades\Voyager;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         Paginator::useBootstrapFive();
         Paginator::useBootstrapFour();
-
+        Voyager::addAction(RequestedEntryAction::class);
+        Voyager::addAction(RequestedEntryUserAction::class);
     }
 }
