@@ -120,6 +120,45 @@ class RequestedEntrySeeder extends Seeder
             ])->save();
         }
 
+        $dataRow = $this->dataRow($modelType, 'entry_id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'number',
+                'display_name' => 'Publicación',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'order'        => $column_index++,
+                'details'      => []
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($modelType, 'entry');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'relationship',
+                'display_name' => 'Publicación',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'order'        => $column_index++,
+                'details'      => [
+                    'model'    => 'App\\Models\\Entry',
+                    'type'     => 'belongsTo',
+                    'column'   => 'entry_id',
+                    'key'      => 'id',
+                    'table'    => "entries",
+                    'label'    => 'title',
+                ]
+            ])->save();
+        }
+
         // ---------------------------------------
 
         // Generate Menú
@@ -150,10 +189,10 @@ class RequestedEntrySeeder extends Seeder
         // Set Permissions
         $role = Role::where('name', 'admin')->firstOrFail();
 
-        $permissions = Permission::all();
+        $permissions = Permission::where("key", "=", "browse_requested_entries")->get();
 
-        $role->permissions()->sync(
-            $permissions->pluck('id')->all()
+        $role->permissions()->attach(
+            $permissions->pluck('id')
         );
     }
 
