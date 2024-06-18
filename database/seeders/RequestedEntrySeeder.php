@@ -194,6 +194,15 @@ class RequestedEntrySeeder extends Seeder
         $role->permissions()->attach(
             $permissions->pluck('id')
         );
+
+        // Set Permissions
+        $role = Role::where('name', 'user')->firstOrFail();
+
+        $permissions = Permission::where("key", "=", "browse_requested_entries")->get();
+
+        $role->permissions()->attach(
+            $permissions->pluck('id')
+        );
     }
 
     protected function dataType($field, $for)
