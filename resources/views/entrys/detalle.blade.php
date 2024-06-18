@@ -21,7 +21,15 @@
         <p class="product-user">Por <a class="text-decoration-none"
                 href="{{ route('perfil', ['id' => $publicacion->user->id]) }}">{{ $publicacion->user->name }}</a></p>
         <p class="product-description">{!! nl2br(strip_tags($publicacion->description)) !!}</p>
-        <a href="{{ route('publicaciones') }}" class="btn-carrito">Agregar al carrito</a>
+        <form action="{{ route('solicitar', $publicacion->id) }}" method="POST">
+            @csrf
+            <button type="submit" class="btn-carrito">
+
+            
+            Agregar al carrito
+            </button>
+        </form>
+        <!-- <a href="{{ route('publicaciones') }}" class="btn-carrito">Agregar al carrito</a> -->
     </div>
 </div>
 

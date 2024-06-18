@@ -38,7 +38,7 @@
     </div>
 
     <div class="user-publications">
-        <h1>Publicaciones</h1>
+        <!-- <h1>Publicaciones</h1> -->
         <div class="cards-container">
             @foreach ($publicaciones as $publicacion)
                 <div class="publicacion-card">
@@ -53,6 +53,9 @@
                     </a>
                 </div>
             @endforeach
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+            {{ $publicaciones->links('pagination::bootstrap-4') }}
         </div>
     </div>
 </div>

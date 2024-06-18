@@ -11,22 +11,27 @@ class FavoriteController extends Controller
 {
     public function add($id)
     {
-        $userId = Auth::id();
 
-        $favoriteExistente = Favorite::where('user_id', $userId)
-            ->where('entry_id', $id)
-            ->first();
+        if (auth()->check()) {
+            $userId = Auth::id();
 
-        if ($favoriteExistente) {
-            $favoriteExistente->delete();
+            $favoriteExistente = Favorite::where('user_id', $userId)
+                ->where('entry_id', $id)
+                ->first();
+
+            if ($favoriteExistente) {
+                $favoriteExistente->delete();
+            } else {
+                Favorite::create([
+                    'user_id' => $userId,
+                    'entry_id' => $id
+                ]);
+            }
+            return back();
         } else {
-            Favorite::create([
-                'user_id' => $userId,
-                'entry_id' => $id
-            ]);
-        }
 
-        return back();
+            return redirect()->route('voyager.login');
+        }
     }
     public function misFavoritos()
     {

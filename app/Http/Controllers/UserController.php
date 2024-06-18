@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use App\Models\User;
@@ -15,7 +16,7 @@ class UserController extends VoyagerBaseController
         $usuario = User::findOrFail($id);
 
         /* $user = User::findOrFail($id); */
-        $publicaciones = Entry::where('user_id', $id)->get();
+        $publicaciones = Entry::where('user_id', $id)->paginate(6);
 
         /* return view('users.show', compact('user', 'publicaciones')); */
 
@@ -24,26 +25,32 @@ class UserController extends VoyagerBaseController
 
     public function calificar(Request $request, $id)
     {
-        $request->validate([
-            'rating' => 'required|integer|between:1,5',
-        ]);
-
-        $usuario = User::findOrFail($id);
-
-        $calificacionExistente = Rate::where('user_id', $usuario->id)
-                                     ->where('qualifier', auth()->id())
-                                     ->first();
-
-        if ($calificacionExistente) {
-            $calificacionExistente->update(['stars' => $request->rating]);
-        } else {
-            Rate::create([
-                'user_id' => $usuario->id,
-                'qualifier' => auth()->id(),
-                'stars' => $request->rating,
+        if (Auth()->check()) {
+            $request->validate([
+                'rating' => 'required|integer|between:1,5',
             ]);
+
+            $usuario = User::findOrFail($id);
+
+            $calificacionExistente = Rate::where('user_id', $usuario->id)
+                ->where('qualifier', auth()->id())
+                ->first();
+
+            if ($calificacionExistente) {
+                $calificacionExistente->update(['stars' => $request->rating]);
+            } else {
+                Rate::create([
+                    'user_id' => $usuario->id,
+                    'qualifier' => auth()->id(),
+                    'stars' => $request->rating,
+                ]);
+            }
+            return back()->with('success', 'Calificación enviada!');
+        } else {
+            return redirect()->route('voyager.login');
         }
 
-        return back()->with('success', 'Calificación enviada!');
+
+
     }
 }

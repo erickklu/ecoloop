@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EntryController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\RequestedEntryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use TCG\Voyager\Facades\Voyager;
@@ -28,6 +29,7 @@ Route::post('/publicaciones/{id}/intereses', [FavoriteController::class, 'add'])
 Route::get('/intereses', [FavoriteController::class, 'misFavoritos'])->name('favoritos');
 Route::get('/perfil/{id}', [UserController::class, 'showUser'])->name('perfil');
 Route::post('/calificar/{id}', [UserController::class, 'calificar'])->name('calificar');
+Route::post('/publicacion/{id}/solicitar', [RequestedEntryController::class, 'solicitar'])->name('solicitar');
 
 
 
