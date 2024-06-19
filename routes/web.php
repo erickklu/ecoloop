@@ -32,7 +32,6 @@ Route::post('/calificar/{id}', [UserController::class, 'calificar'])->name('cali
 Route::post('/publicacion/{id}/solicitar', [RequestedEntryController::class, 'solicitar'])->name('solicitar');
 
 
-
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });

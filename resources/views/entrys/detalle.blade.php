@@ -17,6 +17,9 @@
                 @endif
             </button>
         </form>
+        @if (Auth::id() == $publicacion->user->id)
+                <a href="{{ route('voyager.entries.edit', ['id' => $publicacion->id]) }}" class="btn-edit"><i class="bi bi-pencil-square"></i></a>
+            @endif
         <h1 class="product-title">{{ $publicacion->title }}</h1>
         <p class="product-user">Por <a class="text-decoration-none"
                 href="{{ route('perfil', ['id' => $publicacion->user->id]) }}">{{ $publicacion->user->name }}</a></p>

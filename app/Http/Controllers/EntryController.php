@@ -21,7 +21,7 @@ class EntryController extends VoyagerBaseController
     public function ViewEntrys()
     {
         $publicaciones = Entry::orderBy('created_at', 'desc')->paginate(9);
-        $categorias = Category::all();
+        $categorias = Category::withCount('publicaciones')->get();
         return view('entrys.index', compact('publicaciones', 'categorias'));
     }
 
@@ -38,7 +38,7 @@ class EntryController extends VoyagerBaseController
         if (auth()->check()) {
             $favoritas = auth()->user()->favoriteEntries->pluck('id')->toArray();
         } else {
-            $favoritas = []; 
+            $favoritas = [];
         }
         $relacionadas = Entry::where('category_id', $publicacion->category_id)
             ->where('id', '!=', $id)
@@ -51,7 +51,7 @@ class EntryController extends VoyagerBaseController
     public function filterByCategory($categoryId)
     {
         $publicaciones = Entry::where('category_id', $categoryId)->paginate(9);
-        $categorias = Category::all();
+        $categorias = Category::withCount('publicaciones')->get();
 
         return view('entrys.index', compact('publicaciones', 'categorias', 'categoryId'));
     }
