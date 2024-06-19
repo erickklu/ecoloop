@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EntryController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\RequestedEntryController;
@@ -31,7 +32,8 @@ Route::get('/intereses', [FavoriteController::class, 'misFavoritos'])->name('fav
 Route::get('/perfil/{id}', [UserController::class, 'showUser'])->name('perfil');
 Route::post('/calificar/{id}', [UserController::class, 'calificar'])->name('calificar');
 Route::post('/publicacion/{id}/solicitar', [RequestedEntryController::class, 'solicitar'])->name('solicitar');
-
+Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
