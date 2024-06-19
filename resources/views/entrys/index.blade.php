@@ -27,6 +27,23 @@
                     </div>
                 </a>
         @endforeach
+        <form method="GET" action="{{ route('publicaciones') }}">
+            <div class="">
+                <div class="">
+                    <label for="from_date">Desde:</label>
+                    <input type="date" id="from_date" name="from_date" class="form-control"
+                        value="{{ request('from_date') }}">
+                </div>
+                <div class="">
+                    <label for="to_date">Hasta:</label>
+                    <input type="date" id="to_date" name="to_date" class="form-control"
+                        value="{{ request('to_date') }}">
+                </div>
+                <div class="">
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                </div>
+            </div>
+        </form>
     </div>
     <div class="publicaciones">
         <h1 class="title-text">Publicaciones</h1>
@@ -46,6 +63,7 @@
                                 <div class="image-container">
                                     <div class="category-overlay {{ $colorClase }}">{{ $publicacion->category->name }}</div>
                                     <img src="{{ url($publicacion->image) }}" alt="">
+                                    <!-- <img src="{{ Voyager::image($publicacion->image) }}" alt="..."> -->
                                 </div>
                                 <div class="publicacion-content">
                                     <p class="publicacion-title">{{ $publicacion->title }}</p>

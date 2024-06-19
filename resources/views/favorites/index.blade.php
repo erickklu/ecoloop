@@ -2,12 +2,12 @@
 @section('title', 'Favoritos')
 
 @section('content')
-<h1>Mis Favoritos</h1>
+<h1 class="title-text">Mis Favoritos</h1>
 @if($publicacionesFavoritas->isEmpty())
     <p>No tienes publicaciones favoritas.</p>
 @else
 
-    <div class="cards-container">
+    <div class="favorites-container">
         @foreach ($publicacionesFavoritas as $publicacion)
             <div class="publicacion-card">
                 <a href="{{ route('publicaciones.detalle', $publicacion->id) }}">

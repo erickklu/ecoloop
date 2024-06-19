@@ -26,7 +26,8 @@
                     <div class="rating">
                         @for ($i = 5; $i >= 1; $i--)
                             <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }} />
-                            <label for="star{{ $i }}" title="{{ $i }} estrellas"><i class="bi bi-star-fill"></i></label>
+                            <label for="star{{ $i }}" title="{{ $i }} estrellas" data-value="{{ $i }}"><i
+                                    class="bi bi-star-fill"></i></label>
                         @endfor
                     </div>
                     <button class="btn-carrito" type="submit">Enviar Calificación</button>

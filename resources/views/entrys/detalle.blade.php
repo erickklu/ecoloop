@@ -21,7 +21,7 @@
                 <a href="{{ route('voyager.entries.edit', ['id' => $publicacion->id]) }}" class="btn-edit"><i class="bi bi-pencil-square"></i></a>
             @endif
         <h1 class="product-title">{{ $publicacion->title }}</h1>
-        <p class="product-user">Por <a class="text-decoration-none"
+        <p class="product-user">Por <a class="user-name"
                 href="{{ route('perfil', ['id' => $publicacion->user->id]) }}">{{ $publicacion->user->name }}</a></p>
         <p class="product-description">{!! nl2br(strip_tags($publicacion->description)) !!}</p>
         <form action="{{ route('solicitar', $publicacion->id) }}" method="POST">

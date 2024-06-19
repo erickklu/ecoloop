@@ -6,12 +6,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100px;
+    height: 164px;
     padding: 0 80px;
     font-size: 20px;
     font-weight: 500;
-    box-shadow: 1px 1px 10px rgb(100, 100, 100);
+    /* box-shadow: 1px 1px 10px rgb(100, 100, 100); */
     font-family: 'Inter', sans-serif;
+    transition: box-shadow 0.3s;
 
     .navbar-brand a {
         color: black;
@@ -47,5 +48,9 @@
         &:hover {
             background-color: #94A861;
         }
+    }
+
+    &.navbar-shadow {
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
     }
 }

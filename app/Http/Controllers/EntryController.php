@@ -18,11 +18,25 @@ class EntryController extends VoyagerBaseController
         return parent::store($request);
     }
 
-    public function ViewEntrys()
+    public function ViewEntrys(Request $request)
     {
-        $publicaciones = Entry::orderBy('created_at', 'desc')->paginate(9);
+        $fromDate = $request->input('from_date');
+        $toDate = $request->input('to_date');
+
+        $query = Entry::query();
+
+        if ($fromDate) {
+            $query->whereDate('created_at', '>=', $fromDate);
+        }
+
+        if ($toDate) {
+            $query->whereDate('created_at', '<=', $toDate);
+        }
+
+        $publicaciones = $query->orderBy('created_at', 'desc')->paginate(9);
         $categorias = Category::withCount('publicaciones')->get();
-        return view('entrys.index', compact('publicaciones', 'categorias'));
+
+        return view('entrys.index', compact('publicaciones', 'categorias', 'fromDate', 'toDate'));
     }
 
     /*  public function DetailEntry($id)

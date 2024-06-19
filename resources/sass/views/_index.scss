@@ -1,6 +1,6 @@
 .content-wrapper {
     display: flex;
-    gap: 66px;
+    gap: 75px;
 
     .title-text {
         margin-bottom: 37px;
@@ -18,20 +18,21 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: space-between;
-        gap: 20px;
+        /* justify-content: space-between; */
+        gap: 18px;
         /* margin-bottom: 40px; */
 
         .publicacion-card {
             background: #fff;
             border-radius: 8px;
-            /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-            flex: 1 1 calc(33.333% - 20px);
+            display: flex;
+            width: calc((100% - 36px) / 3);
+            min-width: 328.25px;
             box-sizing: border-box;
             overflow: hidden;
-            min-width: 200px;
-            max-width: calc(33.333% - 20px);
-
+            a{
+                width: 100%;
+            }
             .image-container {
                 position: relative;
                 width: 100%;
@@ -62,30 +63,32 @@
                     &.venta-bg {
                         background: #FEC868;
                     }
-                
+
                     &.donacion-bg {
-                        background: #473C33; 
+                        background: #473C33;
                     }
-                
+
                     &.intercambio-bg {
-                        background: #ABC270; 
+                        background: #ABC270;
                     }
-                
+
                     &.default-bg {
-                        background: rgba(0, 0, 0, 0.5); 
+                        background: rgba(0, 0, 0, 0.5);
                     }
                 }
             }
 
             .publicacion-content {
-                padding: 20px;
+                /* padding: 20px;
                 padding-left: 0;
-                padding-right: 0;
+                padding-right: 0; */
+                padding-top: 20px;
 
                 .publicacion-title {
                     font-size: 20px;
                     font-weight: 500;
-                    margin: 0 0 10px;
+                    /* margin: 0 0 10px; */
+                    margin-bottom: 14px;
                     color: #000000;
                 }
 
@@ -128,10 +131,12 @@
         margin-bottom: 32px;
         background-color: white;
         border-radius: 8px;
-        /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-        box-shadow: 0px 0px 51px -10px rgba(0, 0, 0, 0.15);
+        /* box-shadow: 0 0px 8px rgba(0, 0, 0, 0.2); */
+        /* box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.2); */
+        box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.1);
 
-        
+
+
         text-align: left;
         cursor: pointer;
         transition: transform 0.3s, box-shadow 0.3s;

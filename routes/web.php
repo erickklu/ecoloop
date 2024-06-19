@@ -22,6 +22,7 @@ Route::get('/', function () {
     return view('home.home');
 })->name("home");
 
+
 Route::get('/publicaciones', [EntryController::class, 'ViewEntrys'])->name('publicaciones');
 Route::get('/publicaciones/{id}', [EntryController::class, 'DetailEntry'])->name('publicaciones.detalle');
 Route::get('/publicaciones/categoria/{id}', [EntryController::class, 'filterByCategory'])->name('publicaciones.categoria');

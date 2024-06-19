@@ -3,6 +3,7 @@
 @import 'views/detalle';
 @import 'views/userMenu';
 @import 'views/profile';
+@import 'views/favorites';
 @import "bootstrap/dist/css/bootstrap.min.css";
 
 body,
@@ -14,6 +15,7 @@ html {
 .contenedor {
     padding: 0 80px;
     padding-bottom: 80px;
+    margin-top: 24px;
 }
 
 .page-link {
