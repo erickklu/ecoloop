@@ -1,66 +1,74 @@
 @extends('voyager::auth.master')
 
 @section('content')
-<div class="login-container">
-
-    <p>Registrate</p>
+<div class="login-container" style="top: 40%;">
+    <p>Regístrate</p>
 
     <form action="{{ url('/register') }}" method="POST">
         {{ csrf_field() }}
+
         <div class="form-group form-group-default" id="nameGroup">
             <label>Nombre</label>
             <div class="controls">
-                <input type="text" name="name" id="name" value=""
-                    placeholder="Nombre" class="form-control" required>
+                <input type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Nombre"
+                    class="form-control" required>
             </div>
         </div>
 
         <div class="form-group form-group-default" id="emailGroup">
-            <label>{{ __('voyager::generic.email') }}</label>
+            <label>Email</label>
             <div class="controls">
-                <input type="text" name="email" id="email" value="{{ old('email') }}"
-                    placeholder="{{ __('voyager::generic.email') }}" class="form-control" required>
+                <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="Email"
+                    class="form-control" required>
             </div>
         </div>
 
         <div class="form-group form-group-default" id="passwordGroup">
-            <label>{{ __('voyager::generic.password') }}</label>
+            <label>Contraseña</label>
             <div class="controls">
-                <input type="password" name="password" placeholder="{{ __('voyager::generic.password') }}"
+                <input type="password" name="password" placeholder="Contraseña" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="form-group form-group-default" id="passwordConfirmGroup">
+            <label>Confirmar Contraseña</label>
+            <div class="controls">
+                <input type="password" name="password_confirmation" placeholder="Confirmar Contraseña"
                     class="form-control" required>
             </div>
         </div>
 
         <button type="submit" class="btn btn-block login-button">
-            <span class="signingin hidden"><span class="voyager-refresh"></span>
-                {{ __('voyager::login.loggingin') }}...</span>
-            <span class="signin">{{ __('voyager::generic.login') }}</span>
+            <span class="register">Regístrate</span>
         </button>
-
     </form>
-
-    <div style="clear:both"></div>
+    <div class="register-container">
+        <a href="{{ route('voyager.login') }}">
+            <button type="button" class="btn btn-block login-button" style="margin-left:10px;">
+                Volver
+            </button>
+        </a>
+    </div>
 
     @if(!$errors->isEmpty())
-        <div class="alert alert-red">
+        <div class="alert alert-danger">
             <ul class="list-unstyled">
-                @foreach($errors->all() as $err)
-                    <li>{{ $err }}</li>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
                 @endforeach
             </ul>
         </div>
     @endif
-
-</div> <!-- .login-container -->
+</div>
 @endsection
 
 @section('post_js')
-
 <script>
     var btn = document.querySelector('button[type="submit"]');
     var form = document.forms[0];
     var email = document.querySelector('[name="email"]');
     var password = document.querySelector('[name="password"]');
+
     btn.addEventListener('click', function (ev) {
         if (form.checkValidity()) {
             btn.querySelector('.signingin').className = 'signingin';
@@ -69,23 +77,22 @@
             ev.preventDefault();
         }
     });
+
     email.focus();
     document.getElementById('emailGroup').classList.add("focused");
 
-    // Focus events for email and password fields
-    email.addEventListener('focusin', function (e) {
+    email.addEventListener('focusin', function () {
         document.getElementById('emailGroup').classList.add("focused");
     });
-    email.addEventListener('focusout', function (e) {
+    email.addEventListener('focusout', function () {
         document.getElementById('emailGroup').classList.remove("focused");
     });
 
-    password.addEventListener('focusin', function (e) {
+    password.addEventListener('focusin', function () {
         document.getElementById('passwordGroup').classList.add("focused");
     });
-    password.addEventListener('focusout', function (e) {
+    password.addEventListener('focusout', function () {
         document.getElementById('passwordGroup').classList.remove("focused");
     });
-
 </script>
 @endsection

@@ -30,18 +30,18 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-block login-button">
+        <button type="submit" class="btn btn-block login-button" style="float: none;">
             <span class="signingin hidden"><span class="voyager-refresh"></span>
                 {{ __('voyager::login.loggingin') }}...</span>
             <span class="signin">{{ __('voyager::generic.login') }}</span>
         </button>
-
     </form>
-    <a href="{{ route('register') }}">
-        <button type="submit" class="btn btn-block login-button">
-            <span class="signin">Registrate</span>
-        </button>
-    </a>
+    <div class="register-container">
+        No tienes una cuenta? 
+        <a href="{{ route('register') }}">
+            Registrate aquí
+        </a>
+    </div>
 
     <div style="clear:both"></div>
 
@@ -55,7 +55,7 @@
         </div>
     @endif
 
-</div> <!-- .login-container -->
+</div> 
 @endsection
 
 @section('post_js')

@@ -106,6 +106,9 @@
                         font-weight: 500;
                         margin: 0 0 10px;
                         color: #000;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
 
                     .publicacion-text {
@@ -137,33 +140,34 @@
             cursor: pointer;
             font-size: 30px;
             color: #ddd;
+            position: relative;
 
             &:hover,
-            &:hover~label,
-            input[type="radio"]:checked~label {
+            &:hover ~ label,
+            input[type="radio"]:checked ~ label {
                 color: #f5c518;
             }
 
+            i {
+                margin-right: 5px;
+                color: inherit; // Actualización para heredar el color del padre
+            }
+        }
 
+        input[type="radio"]:checked + label {
+            color: #f5c518; // Asegura que la estrella marcada se muestre correctamente
 
-            &:hover i,
-            &:hover~label i,
-            input[type="radio"]:checked~label i {
-                color: #f5c518;
+            i {
+                color: #f5c518; // Actualización para heredar el color del padre
             }
         }
 
         .selected {
             color: #f5c518;
 
-            ~label i {
+            ~ label i {
                 color: #f5c518;
             }
-        }
-
-        i {
-            margin-right: 5px;
-            color: #ddd;
         }
     }
 

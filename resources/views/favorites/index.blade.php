@@ -12,8 +12,8 @@
             <div class="publicacion-card">
                 <a href="{{ route('publicaciones.detalle', $publicacion->id) }}">
                     <div class="image-container">
-                        <!-- <img src="{{ Voyager::image($publicacion->image) }}" alt="..."> -->
-                        <img src="{{ url($publicacion->image) }}" alt="">
+                        <img src="{{ Voyager::image($publicacion->image) }}" alt="...">
+                        <!-- <img src="{{ url($publicacion->image) }}" alt=""> -->
 
                     </div>
                     <div class="publicacion-content">

@@ -21,6 +21,7 @@ class RequestedEntryController extends VoyagerBaseController
 
             if ($solicitudExistente) {
                 $solicitudExistente->delete();
+                return redirect()->back()->with('success', '¡Solicitud eliminada exitosamente!');
             } else {
                 RequestedEntry::create([
                     'user_id' => $userId,
@@ -28,12 +29,11 @@ class RequestedEntryController extends VoyagerBaseController
                     'request_date' => now()
 
                 ]);
+                return redirect()->back()->with('success', '¡Solicitud enviada exitosamente!');
             }
-            return back();
         } else {
-
             return redirect()->route('voyager.login');
         }
     }
-    
+
 }

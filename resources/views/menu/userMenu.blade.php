@@ -43,7 +43,8 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                     <li>
-                        <a class="dropdown-item" href="{{ route('voyager.profile') }}">Perfil</a>
+                        <!-- <a class="dropdown-item" href="{{ route('voyager.profile') }}">Perfil</a> -->
+                        <a class="dropdown-item" href="{{ route('perfil', ['id' => Auth::user()->id]) }}">Perfil</a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="{{ route('favoritos') }}">Mis favoritos</a>
