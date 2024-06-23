@@ -22,21 +22,23 @@
                     <p class="text">Posts</p>
                 </div>
             </div>
-            <div class="rating-form">
-                <form action="{{ route('calificar', $usuario->id) }}" method="POST">
-                    @csrf
-                    <label for="rating">Califica este usuario:</label>
-                    <div class="rating">
-                        @for ($i = 5; $i >= 1; $i--)
-                            <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}"
-                                class="{{$rate->stars >= $i ? 'selected' : ''}}" />
-                            <label for="star{{ $i }}" title="{{ $i }} estrellas" data-value="{{ $i }}"><i
-                                    class="bi bi-star-fill"></i></label>
-                        @endfor
-                    </div>
-                    <button class="btn-carrito" type="submit">Enviar Calificación</button>
-                </form>
-            </div>
+
+            @if (Auth::check())
+                <div class="rating-form">
+                    <form action="{{ route('calificar', $usuario->id) }}" method="POST" id="ratingForm">
+                        @csrf
+                        <label for="rating">Califica este usuario:</label>
+                        <div class="rating">
+                            @for ($i = 5; $i >= 1; $i--)
+                                <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}" {{ $rate && $rate->stars == $i ? 'checked' : '' }} />
+                                <label for="star{{ $i }}" title="{{ $i }} estrellas"><i class="bi bi-star-fill"></i></label>
+                            @endfor
+                        </div>
+                        <button class="btn-carrito" type="submit">Enviar Calificación</button>
+                    </form>
+                </div>
+            @endif
+
 
 
         </div>

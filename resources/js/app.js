@@ -3,7 +3,13 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '../sass/app.scss';
 import Swal from 'sweetalert2';
 
-//Función para el toast de sweetalert
+window.toggleNavbar = function() {
+    const navbarMenu = document.getElementById('navbarMenu');
+    if (navbarMenu) {
+        navbarMenu.classList.toggle('show');
+    }
+}
+
 function showToast(message, icon = 'success') {
     const Toast = Swal.mixin({
         toast: true,
@@ -23,7 +29,6 @@ function showToast(message, icon = 'success') {
     });
 }
 
-//Método para mostrar el toast
 document.addEventListener('DOMContentLoaded', () => {
     const successMessageElement = document.querySelector('meta[name="success-message"]');
     if (successMessageElement) {
@@ -32,10 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showToast(successMessage, 'success');
         }
     }
-});
 
-//Shadow del navbar
-document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     if (navbar) {
         window.addEventListener('scroll', () => {
@@ -47,70 +49,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* //Rating de estrellas para calificación
-    const ratingInputs = document.querySelectorAll('.rating input[type="radio"]');
-    const ratingLabels = document.querySelectorAll('.rating input[type="radio"] + label');
-    const ratingForm = document.querySelector('.rating-form form');
-
-    if (ratingInputs.length > 0 && ratingLabels.length > 0 && ratingForm) {
-        ratingLabels.forEach(label => {
-            label.addEventListener('click', (e) => {
-                const value = label.getAttribute('data-value');
-
-                ratingLabels.forEach(l => l.classList.remove('selected'));
-
-                ratingLabels.forEach(l => {
-                    if (l.getAttribute('data-value') <= value) {
-                        l.classList.add('selected');
-                    }
-                });
-            });
+    const categoriesContainer = document.querySelector('.categories-container');
+    if (categoriesContainer) {
+        categoriesContainer.addEventListener('mouseenter', () => {
+            categoriesContainer.classList.add('show-scrollbar');
         });
-
-        ratingForm.addEventListener('submit', () => {
-            ratingLabels.forEach(label => label.classList.remove('selected'));
+        categoriesContainer.addEventListener('mouseleave', () => {
+            categoriesContainer.classList.remove('show-scrollbar');
         });
-
-        const checkedInput = document.querySelector('.rating input[type="radio"]:checked');
-        if (checkedInput) {
-            const checkedValue = checkedInput.value;
-            ratingLabels.forEach(label => {
-                if (label.getAttribute('data-value') <= checkedValue) {
-                    label.classList.add('selected');
-                }
-            });
-        }
-    } */
+    }
 
     const ratingInputs = document.querySelectorAll('.rating input[type="radio"]');
     const ratingLabels = document.querySelectorAll('.rating input[type="radio"] + label');
-
     if (ratingInputs.length > 0 && ratingLabels.length > 0) {
         ratingLabels.forEach(label => {
-            label.addEventListener('click', () => {
-                const value = label.getAttribute('data-value');
-
+            label.addEventListener('click', (e) => {
+                const value = label.getAttribute('for').replace('star', '');
                 ratingLabels.forEach(l => l.classList.remove('selected'));
-               
                 ratingLabels.forEach(l => {
-                    if (l.getAttribute('data-value') <= value) {
+                    if (l.getAttribute('for').replace('star', '') <= value) {
                         l.classList.add('selected');
                     }
                 });
             });
+            label.addEventListener('mouseenter', () => {
+                const value = label.getAttribute('for').replace('star', '');
+                ratingLabels.forEach(l => l.classList.remove('hovered'));
+                ratingLabels.forEach(l => {
+                    if (l.getAttribute('for').replace('star', '') <= value) {
+                        l.classList.add('hovered');
+                    }
+                });
+            });
+            label.addEventListener('mouseleave', () => {
+                ratingLabels.forEach(l => l.classList.remove('hovered'));
+            });
         });
-
-        // Asegúrate de que la estrella seleccionada se muestre correctamente al cargar la página
         const checkedInput = document.querySelector('.rating input[type="radio"]:checked');
         if (checkedInput) {
             const checkedValue = checkedInput.value;
             ratingLabels.forEach(label => {
-                if (label.getAttribute('data-value') <= checkedValue) {
+                if (label.getAttribute('for').replace('star', '') <= checkedValue) {
                     label.classList.add('selected');
                 }
             });
         }
     }
 });
-
-

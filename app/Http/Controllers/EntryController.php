@@ -26,7 +26,8 @@ class EntryController extends VoyagerBaseController
         $categoryId = $request->input('category_id');
         $sortBy = $request->input('sort_by');
 
-        $query = Entry::query();
+        /* $query = Entry::query(); */
+        $query = Entry::where('state', 'DISPONIBLE');
 
         if ($fromDate) {
             $query->whereDate('created_at', '>=', $fromDate);
@@ -59,7 +60,10 @@ class EntryController extends VoyagerBaseController
         }
 
         $publicaciones = $query->paginate(9);
-        $categorias = Category::withCount('publicaciones')->get();
+        /* $categorias = Category::withCount('publicaciones')->get(); */
+        $categorias = Category::withCount(['publicaciones' => function($query) {
+            $query->where('state', 'DISPONIBLE');
+        }])->get();
 
         return view('entrys.index', compact('publicaciones', 'categorias', 'fromDate', 'toDate', 'sortBy', 'categoryId'));
     }
@@ -90,6 +94,7 @@ class EntryController extends VoyagerBaseController
         }
         $relacionadas = Entry::where('category_id', $publicacion->category_id)
             ->where('id', '!=', $id)
+            ->where('state', 'DISPONIBLE')
             ->take(4)
             ->get();
 
@@ -102,7 +107,7 @@ class EntryController extends VoyagerBaseController
         $toDate = $request->input('to_date');
         $sortBy = $request->input('sort_by');
 
-        $query = Entry::where('category_id', $categoryId);
+        $query = Entry::where('category_id', $categoryId)->where('state', 'DISPONIBLE');
 
         if ($fromDate) {
             $query->whereDate('created_at', '>=', $fromDate);

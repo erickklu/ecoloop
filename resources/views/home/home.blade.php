@@ -17,7 +17,7 @@
 
     </div>
     <div class="home-image">
-        <img style="width:500px;" src="{{ asset('storage/Jardin-Botanico-3.jpg') }}" alt="Jardín Botánico">
+        <img src="{{ asset('storage/Jardin-Botanico-3.jpg') }}" alt="Jardín Botánico">
 
     </div>
 </div>

@@ -14,7 +14,7 @@
                 @endif
             </button>
         </form>
-        <img style="width:625px;" src="{{ Voyager::image($publicacion->image) }}" alt="{{$publicacion->image}}">
+        <img src="{{ Voyager::image($publicacion->image) }}" alt="{{$publicacion->image}}">
         <!-- <img style="width:625px;" src="{{ url($publicacion->image) }}" alt="..."> -->
     </div>
     <div class="product-details">
@@ -22,10 +22,10 @@
         <div class="container-content">
             @if (Auth::id() == $publicacion->user->id)
                 <!-- <a href="{{ route('voyager.entries.edit', ['id' => $publicacion->id]) }}" class="btn-edit"
-                        placeholder="Editar"><i class="bi bi-pencil-square"></i></a> -->
+                                placeholder="Editar"><i class="bi bi-pencil-square"></i></a> -->
                 <div class="dropdown float-end">
-                    <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-bs-toggle="dropdown" aria-expanded="false"></button>
+                    <button class="btn btn-sm btn-light" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                        aria-expanded="false"><i class="bi bi-three-dots-vertical"></i></button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <li><a href="{{ route('voyager.entries.edit', ['id' => $publicacion->id]) }}" class="dropdown-item"
                                 placeholder="Editar">Editar publicación</a>
@@ -33,7 +33,7 @@
                     </ul>
                 </div>
             @endif
-            <p class="product-user">Por <a class="user-name"
+            <p class="product-user">Por <a title="Ver usuario" class="user-name"
                     href="{{ route('perfil', ['id' => $publicacion->user->id]) }}">{{ $publicacion->user->name }}</a>
             </p>
             <p class="product-description">{!! nl2br(strip_tags($publicacion->description)) !!}</p>

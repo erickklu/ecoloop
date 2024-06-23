@@ -31,7 +31,7 @@ class RequestedEntryAction extends AbstractAction
 
     public function getDefaultRoute()
     {
-        return route('publicaciones.detalle', ["id" => $this->data->id]);
+        return route('publicaciones.detalle', ["id" => $this->data->entry_id]);
     }
 
     public function shouldActionDisplayOnDataType()

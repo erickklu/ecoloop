@@ -22,6 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RequestedEntrySeeder::class);
 
 
-        Entry::factory(100)->create();
+        
     }
 }
