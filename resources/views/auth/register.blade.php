@@ -50,6 +50,8 @@
         </a>
     </div>
 
+    <div style="clear:both"></div>
+
     @if(!$errors->isEmpty())
         <div class="alert alert-danger">
             <ul class="list-unstyled">

@@ -32,7 +32,10 @@
                         <i class="{{ $icono }} category-icon"></i>
                         <div class="category-text">
                             <p class="category-title">{{ $categoria->name }}</p>
-                            <p class="small-text">{{ $categoria->publicaciones_count }} publicaciones</p>
+                            <p class="small-text">
+                                {{ $categoria->publicaciones_count }}
+                                {{ $categoria->publicaciones_count === 1 ? 'publicación' : 'publicaciones' }}
+                            </p>
                         </div>
                     </div>
                 </a>
@@ -72,28 +75,18 @@
                     </div>
                 </div>
             </form>
-
-
-
         </div>
-
-
     </div>
     <div class="entries-container">
         <div class="publicaciones">
             <h1 class="title-text">Publicaciones</h1>
             @auth
                 <div class="button-add-entries-container">
-                    <a href="{{ route('voyager.entries.create') }}" class="add-entries"><i
-                            class="bi bi-plus"></i><!-- Crear Publicación --></a>
+                    <a href="{{ route('voyager.entries.create') }}" class="add-entries"><i class="bi bi-plus"></i></a>
                 </div>
             @endauth
-
-
         </div>
-
         <div class="cards-container">
-
             @foreach ($publicaciones as $publicacion)
                         @php
                             $colores = [
@@ -112,6 +105,7 @@
                                 </div>
                                 <div class="publicacion-content">
                                     <p class="publicacion-title">{{ $publicacion->title }}</p>
+                                    <p class="small-text">{{ $publicacion->formatted_date }}</p>
                                 </div>
                             </a>
                         </div>

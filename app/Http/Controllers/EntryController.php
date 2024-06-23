@@ -19,14 +19,13 @@ class EntryController extends VoyagerBaseController
         return parent::store($request);
     }
 
-    public function ViewEntrys(Request $request)
+    public function ViewEntries(Request $request)
     {
         $fromDate = $request->input('from_date');
         $toDate = $request->input('to_date');
         $categoryId = $request->input('category_id');
         $sortBy = $request->input('sort_by');
 
-        /* $query = Entry::query(); */
         $query = Entry::where('state', 'DISPONIBLE');
 
         if ($fromDate) {
@@ -60,20 +59,12 @@ class EntryController extends VoyagerBaseController
         }
 
         $publicaciones = $query->paginate(9);
-        /* $categorias = Category::withCount('publicaciones')->get(); */
         $categorias = Category::withCount(['publicaciones' => function($query) {
             $query->where('state', 'DISPONIBLE');
         }])->get();
 
-        return view('entrys.index', compact('publicaciones', 'categorias', 'fromDate', 'toDate', 'sortBy', 'categoryId'));
+        return view('entries.index', compact('publicaciones', 'categorias', 'fromDate', 'toDate', 'sortBy', 'categoryId'));
     }
-
-    /*  public function DetailEntry($id)
-    {
-        $publicacion = Entry::findOrFail($id);
-
-        return view('entrys.detalle', compact('publicacion'));
-    } */
 
     public function DetailEntry($id)
     {
@@ -98,7 +89,7 @@ class EntryController extends VoyagerBaseController
             ->take(4)
             ->get();
 
-        return view('entrys.detalle', compact('publicacion', 'relacionadas', 'favoritas', 'solicitudExistente'));
+        return view('entries.detalle', compact('publicacion', 'relacionadas', 'favoritas', 'solicitudExistente'));
     }
 
     public function filterByCategory($categoryId, Request $request)
@@ -138,6 +129,6 @@ class EntryController extends VoyagerBaseController
         $publicaciones = $query->paginate(9);
         $categorias = Category::withCount('publicaciones')->get();
 
-        return view('entrys.index', compact('publicaciones', 'categorias', 'categoryId', 'fromDate', 'toDate', 'sortBy'));
+        return view('entries.index', compact('publicaciones', 'categorias', 'categoryId', 'fromDate', 'toDate', 'sortBy'));
     }
 }

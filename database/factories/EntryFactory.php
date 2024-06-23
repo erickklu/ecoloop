@@ -21,8 +21,8 @@ class EntryFactory extends Factory
             'title'=> fake()->title(),
             'description'=>fake()->paragraph(),
             'category_id' => 1,
-            /* 'image' => fake()->imageUrl($width = 640, $height = 480), */
-            'image' => 'entries\June2024\J8JOCJedvMAkUFlEiez1.jpg',
+            'image' => fake()->imageUrl($width = 640, $height = 480),
+            /* 'image' => 'entries\June2024\J8JOCJedvMAkUFlEiez1.jpg', */
             'user_id' => 1,
             'state' => 'DISPONIBLE'
         ];

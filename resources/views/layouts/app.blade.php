@@ -16,18 +16,6 @@
     
     @stack("css")
     @yield('styles')
-    <!-- <style>
-       /*  body,
-        html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-        }
-        .container {
-            padding: 0 80px;
-            padding-bottom: 80px;
-        } */
-    </style> -->
 </head>
 
 <body>

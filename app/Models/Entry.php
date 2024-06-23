@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Entry extends Model
 {
@@ -35,5 +36,18 @@ class Entry extends Model
     public function getUserBrowseAttribute()
     {
         return "sss";
+    }
+
+    public function getFormattedDateAttribute()
+    {
+        $updatedAt = Carbon::parse($this->updated_at);
+        $now = Carbon::now();
+        $diffInDays = $updatedAt->diffInDays($now);
+
+        if ($diffInDays > 7) {
+            return $updatedAt->locale('es')->isoFormat('[Actualizado el] D [de] MMMM [de] YYYY');
+        } else {
+            return $updatedAt->locale('es')->diffForHumans();
+        }
     }
 }

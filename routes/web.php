@@ -24,7 +24,7 @@ Route::get('/', function () {
 })->name("home");
 
 
-Route::get('/publicaciones', [EntryController::class, 'ViewEntrys'])->name('publicaciones');
+Route::get('/publicaciones', [EntryController::class, 'ViewEntries'])->name('publicaciones');
 Route::get('/publicaciones/{id}', [EntryController::class, 'DetailEntry'])->name('publicaciones.detalle');
 Route::get('/publicaciones/categoria/{id}', [EntryController::class, 'filterByCategory'])->name('publicaciones.categoria');
 Route::post('/publicaciones/{id}/intereses', [FavoriteController::class, 'add'])->name('publicaciones.favorita');

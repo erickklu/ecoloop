@@ -15,13 +15,10 @@ class UserController extends VoyagerBaseController
     {
         $usuario = User::findOrFail($id);
 
-        /* $rate = Rate::where('qualifier', auth()->user()->id)->where('user_id', $id)->first(); */
         $rate = auth()->check() ? Rate::where('qualifier', auth()->id())->where('user_id', $id)->first() : null;
 
-        /* $user = User::findOrFail($id); */
         $publicaciones = Entry::where('user_id', $id)->paginate(6);
 
-        /* return view('users.show', compact('user', 'publicaciones')); */
 
         return view('users.profile', compact('usuario', 'publicaciones', 'rate'));
     }
