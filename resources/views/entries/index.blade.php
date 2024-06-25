@@ -3,8 +3,7 @@
 
 @section("content")
 <div class="content-wrapper">
-    <div class="categories-container"
-        style="background-image: url('{{ Voyager::image(Voyager::setting('admin.bg_image')) }}');">
+    <div class="categories-container">
         <div class="container-title-categories">
             <h4 class="title-text-category">Categorias</h4>
         </div>
@@ -40,7 +39,6 @@
                     </div>
                 </a>
         @endforeach
-        <!-- <h3 class="subtitle-text">Filtrar por:</h3> -->
         <div class="filtros-container">
             <h3 class="title-text-category">Filtros</h3>
             <form method="GET" action="{{ route('publicaciones') }}" class="form-filtros">
@@ -100,7 +98,6 @@
                             <a href="{{ route('publicaciones.detalle', $publicacion->id) }}">
                                 <div class="image-container">
                                     <div class="category-overlay {{ $colorClase }}">{{ $publicacion->category->name }}</div>
-                                    <!-- <img src="{{ url($publicacion->image) }}" alt=""> -->
                                     <img src="{{ Voyager::image($publicacion->image) }}" alt="{{ $publicacion->title }}">
                                 </div>
                                 <div class="publicacion-content">
@@ -110,7 +107,6 @@
                             </a>
                         </div>
             @endforeach
-
         </div>
         <div class="d-flex justify-content-center mt-4">
             {{ $publicaciones->links('pagination::bootstrap-5') }}

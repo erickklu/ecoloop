@@ -37,14 +37,16 @@ class UserController extends VoyagerBaseController
 
             if ($calificacionExistente) {
                 $calificacionExistente->update(['stars' => $request->rating]);
+                return redirect()->back()->with('success', 'Calificación actualizada!');
             } else {
                 Rate::create([
                     'user_id' => $usuario->id,
                     'qualifier' => auth()->id(),
                     'stars' => $request->rating,
                 ]);
+                return redirect()->back()->with('success', 'Calificación enviada!');
             }
-            return back()->with('success', 'Calificación enviada!');
+            
         } else {
             return redirect()->route('voyager.login');
         }

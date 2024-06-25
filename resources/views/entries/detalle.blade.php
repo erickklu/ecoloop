@@ -15,14 +15,11 @@
             </button>
         </form>
         <img src="{{ Voyager::image($publicacion->image) }}" alt="{{$publicacion->image}}">
-        <!-- <img style="width:625px;" src="{{ url($publicacion->image) }}" alt="..."> -->
     </div>
     <div class="product-details">
         <h1 class="product-title">{{ $publicacion->title }}</h1>
         <div class="container-content">
             @if (Auth::id() == $publicacion->user->id)
-                <!-- <a href="{{ route('voyager.entries.edit', ['id' => $publicacion->id]) }}" class="btn-edit"
-                                placeholder="Editar"><i class="bi bi-pencil-square"></i></a> -->
                 <div class="dropdown float-end">
                     <button class="btn btn-sm btn-light" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
                         aria-expanded="false"><i class="bi bi-three-dots-vertical"></i></button>
@@ -48,19 +45,15 @@
                     {{ $solicitudExistente ? 'Eliminar solicitud' : 'Enviar solicitud' }}
                 </button>
             </form>
-            <!-- <a href="{{ route('publicaciones') }}" class="btn-carrito">Agregar al carrito</a> -->
         </div>
-
     </div>
 </div>
-
 <p class="relacion-title">Publicaciones Relacionadas</p>
 <div class="related-container">
     @foreach($relacionadas as $relacionada)
         <div class="related-card">
             <a href="{{ route('publicaciones.detalle', $relacionada->id) }}">
                 <img src="{{ Voyager::image($relacionada->image) }}" alt="{{ $relacionada->title }}">
-                <!-- <img src="{{ url($relacionada->image) }}" alt="{{ $relacionada->title }}"> -->
                 <div class="related-content">
                     <p class="related-title">{{ $relacionada->title }}</p>
                     <p class="related-category">{{ $relacionada->category->name }}</p>

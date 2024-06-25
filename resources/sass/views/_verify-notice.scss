@@ -1,0 +1,17 @@
+.first-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+
+    .verify-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .btn-verify {
+            background-color: black;
+        }
+    }
+}

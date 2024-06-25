@@ -21,7 +21,7 @@ use TCG\Voyager\Facades\Voyager;
 
 Route::get('/', function () {
     return view('home.home');
-})->name("home");
+})->name("home")->middleware('verified');
 
 
 Route::get('/publicaciones', [EntryController::class, 'ViewEntries'])->name('publicaciones');
@@ -38,3 +38,21 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::get('/verify-email/{token}', [AuthController::class, 'verifyEmail'])->name('verification.verify');
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-notice');
+})->name('verification.notice');
+
+Route::post('/email/resend', [AuthController::class, 'resendVerificationEmail'])->name('verification.resend');
+
+
+
+/* Route::get('/test-email', function () {
+    Mail::raw('Test email', function($message) {
+        $message->to('mario_morenor@hotmail.com')
+                ->subject('Test Email');
+    });
+    return 'Email sent';
+}); */

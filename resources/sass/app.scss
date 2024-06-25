@@ -4,6 +4,7 @@
 @import 'views/userMenu';
 @import 'views/profile';
 @import 'views/favorites';
+@import 'views/verify-notice';
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import '@sweetalert2/theme-bootstrap-4/bootstrap-4.scss';
 
@@ -12,12 +13,14 @@ html {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
+    height: 100%;
 }
 
 .contenedor {
     padding: 0 80px;
     padding-bottom: 80px;
     margin-top: 24px;
+    height: 100%;
 
     @media (max-width: 768px) {
         padding: 0 15px;

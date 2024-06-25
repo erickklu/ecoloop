@@ -4,9 +4,9 @@
 
 @section('content')
 <div class="profile-container">
+    <meta name="success-message" content="{{ session('success') }}">
     <div class="user-info">
         <div class="user-details">
-            <!-- <img src="{{ Voyager::image($usuario->avatar) }}" alt=""> -->
             <img src="{{ Voyager::image($usuario->avatar) }}" class="avatar"
                 style="border-radius:50%; width:200px; height:200px; border:5px solid #fff;"
                 alt="{{ $usuario->name }} avatar">
@@ -22,7 +22,6 @@
                     <p class="text">Posts</p>
                 </div>
             </div>
-
             @if (Auth::check())
                 <div class="rating-form">
                     <form action="{{ route('calificar', $usuario->id) }}" method="POST" id="ratingForm">
@@ -38,20 +37,14 @@
                     </form>
                 </div>
             @endif
-
-
-
         </div>
     </div>
-
     <div class="user-publications">
-        <!-- <h1>Publicaciones</h1> -->
         <div class="cards-container">
             @foreach ($publicaciones as $publicacion)
                 <div class="publicacion-card">
                     <a href="{{ route('publicaciones.detalle', $publicacion->id) }}">
                         <div class="image-container">
-                            <!-- <img src="{{ url($publicacion->image) }}" alt=""> -->
                             <img src="{{ Voyager::image($publicacion->image) }}" alt="{{ $publicacion->title }}">
                         </div>
                         <div class="publicacion-content">
@@ -67,5 +60,4 @@
         </div>
     </div>
 </div>
-
 @endsection

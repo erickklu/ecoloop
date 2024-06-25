@@ -13,12 +13,9 @@
                 <a href="{{ route('publicaciones.detalle', $publicacion->id) }}">
                     <div class="image-container">
                         <img src="{{ Voyager::image($publicacion->image) }}" alt="...">
-                        <!-- <img src="{{ url($publicacion->image) }}" alt=""> -->
-
                     </div>
                     <div class="publicacion-content">
                         <p class="publicacion-title">{{ $publicacion->title }}</p>
-                        <!-- <p class="card-text">{!! nl2br(strip_tags($publicacion->description)) !!}</p> -->
                         <p class="publicacion-text">{{ $publicacion->category->name }}</p>
                     </div>
                 </a>
@@ -30,7 +27,3 @@
     </div>
 @endif
 @endsection
-<!-- <div>
-    <h2>{{ $publicacion->title ?? 'Título no disponible' }}</h2>
-    <p>{{ $publicacion->description ?? 'Contenido no disponible' }}</p>
-</div> -->

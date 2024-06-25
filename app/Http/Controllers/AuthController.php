@@ -7,6 +7,10 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -17,11 +21,21 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ])->validate();
+        ], [
+            'name.required' => 'El nombre es obligatorio.',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe ser una dirección válida.',
+            'email.unique' => 'El correo electrónico ya está en uso.',
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'password.confirmed' => 'La confirmación de la contraseña no coincide.',
+        ]);
+
+        $validator->validate();
 
         $user = User::create([
             'name' => $request->name,
@@ -29,8 +43,61 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
-        
-        return redirect()->route('home');
+        $token = Str::random(60);
+
+        DB::table('password_reset_tokens')->insert([
+            'email' => $user->email,
+            'token' => $token,
+            'created_at' => now(),
+        ]);
+
+        Mail::send('emails.verify', ['token' => $token], function ($message) use ($user) {
+            $message->to($user->email);
+            $message->subject('Verificación de correo electrónico');
+        });
+
+
+        return redirect()->route('home')->with('message', 'Se ha enviado un correo de verificación.');
+    }
+
+    public function verifyEmail($token)
+    {
+        $record = DB::table('password_reset_tokens')->where('token', $token)->first();
+
+        if ($record) {
+            User::where('email', $record->email)->update(['email_verified_at' => now()]);
+
+            DB::table('password_reset_tokens')->where('email', $record->email)->delete();
+
+            return redirect()->route('home')->with('message', 'Correo electrónico verificado exitosamente.');
+        } else {
+            return redirect()->route('home')->with('error', 'El token de verificación es inválido.');
+        }
+    }
+
+    public function resendVerificationEmail(Request $request)
+    {
+        $user = Auth::user();
+
+        if ($user->hasVerifiedEmail()) {
+            return redirect()->route('home')->with('message', 'Tu correo ya está verificado.');
+        }
+
+        $token = Str::random(60);
+        DB::table('password_reset_tokens')->updateOrInsert(
+            ['email' => $user->email],
+            ['token' => $token, 'created_at' => now()]
+        );
+
+
+
+        Mail::send('emails.verify', ['token' => $token], function ($message) use ($user) {
+            $message->to($user->email);
+            $message->subject('Verificación de correo electrónico');
+        });
+
+
+
+        return redirect()->route('verification.notice')->with('message', 'Se ha enviado un nuevo correo de verificación.');
     }
 }
