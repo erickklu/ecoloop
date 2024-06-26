@@ -28,6 +28,11 @@ class Entry extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function requestedEntries()
+    {
+        return $this->hasMany(RequestedEntry::class);
+    }
+
     function category()
     {
         return $this->belongsTo(Category::class);
@@ -49,5 +54,10 @@ class Entry extends Model
         } else {
             return $updatedAt->locale('es')->diffForHumans();
         }
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
     }
 }

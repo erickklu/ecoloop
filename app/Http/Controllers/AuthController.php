@@ -23,7 +23,18 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                'unique:users',
+                function ($attribute, $value, $fail) {
+                    if (!str_ends_with($value, '@pucesd.edu.ec')) {
+                        $fail('El correo electrónico debe ser una cuenta institucional de @pucesd.edu.ec.');
+                    }
+                }
+            ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ], [
             'name.required' => 'El nombre es obligatorio.',
@@ -56,8 +67,7 @@ class AuthController extends Controller
             $message->subject('Verificación de correo electrónico');
         });
 
-
-        return redirect()->route('home')->with('message', 'Se ha enviado un correo de verificación.');
+        return redirect()->route('verification.notice')->with('message', 'Se ha enviado un correo de verificación.');
     }
 
     public function verifyEmail($token)
@@ -69,15 +79,16 @@ class AuthController extends Controller
 
             DB::table('password_reset_tokens')->where('email', $record->email)->delete();
 
-            return redirect()->route('home')->with('message', 'Correo electrónico verificado exitosamente.');
+            return redirect()->route('voyager.login')->with('message', 'Correo electrónico verificado exitosamente.');
         } else {
-            return redirect()->route('home')->with('error', 'El token de verificación es inválido.');
+            return redirect()->route('voyager.login')->with('error', 'El token de verificación es inválido.');
         }
     }
 
     public function resendVerificationEmail(Request $request)
     {
         $user = Auth::user();
+
 
         if ($user->hasVerifiedEmail()) {
             return redirect()->route('home')->with('message', 'Tu correo ya está verificado.');
@@ -88,8 +99,6 @@ class AuthController extends Controller
             ['email' => $user->email],
             ['token' => $token, 'created_at' => now()]
         );
-
-
 
         Mail::send('emails.verify', ['token' => $token], function ($message) use ($user) {
             $message->to($user->email);

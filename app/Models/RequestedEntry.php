@@ -11,6 +11,8 @@ class RequestedEntry extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'entry_id', 'request_date'];
+
     protected $guarded = [];
 
     function scopeOwnRequestedEntries(Builder $query)
@@ -21,5 +23,15 @@ class RequestedEntry extends Model
 
         $ids = Auth::user()->entries->pluck("id");
         return $query->whereIn('entry_id',$ids);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function entry()
+    {
+        return $this->belongsTo(Entry::class);
     }
 }

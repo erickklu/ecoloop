@@ -21,7 +21,7 @@ use TCG\Voyager\Facades\Voyager;
 
 Route::get('/', function () {
     return view('home.home');
-})->name("home")->middleware('verified');
+})->name("home");
 
 
 Route::get('/publicaciones', [EntryController::class, 'ViewEntries'])->name('publicaciones');
@@ -35,7 +35,7 @@ Route::post('/publicacion/{id}/solicitar', [RequestedEntryController::class, 'so
 Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'verified'], function () {
     Voyager::routes();
 });
 
