@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("title");
             $table->text("description")->nullable();
             $table->string("image");
+            $table->text("images")->nullable();
             $table->string("state")->default("NO DISPONIBLE");
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade");
             $table->foreignId("category_id")->nullable()->constrained("categories")->nullOnDelete();

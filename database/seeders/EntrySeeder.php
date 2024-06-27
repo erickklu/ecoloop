@@ -177,6 +177,22 @@ class EntrySeeder extends Seeder
             ])->save();
         }
 
+        
+        $dataRow = $this->dataRow($modelType, 'images');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'multiple_images',
+                'display_name' => 'Imágenes',
+                'required'     => 0,
+                'browse'       => 0,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'order'        => $column_index++,
+            ])->save();
+        }
+
         $dataRow = $this->dataRow($modelType, 'user_id');
         if (!$dataRow->exists) {
             $dataRow->fill([
@@ -203,9 +219,9 @@ class EntrySeeder extends Seeder
                 'type'         => 'relationship',
                 'display_name' => 'Usuario',
                 'required'     => 0,
-                'browse'       => 1,
-                'read'         => 1,
-                'edit'         => 1,
+                'browse'       => 0,
+                'read'         => 0,
+                'edit'         => 0,
                 'add'          => 0,
                 'delete'       => 0,
                 'order'        => $column_index++,

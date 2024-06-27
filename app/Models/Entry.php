@@ -55,9 +55,4 @@ class Entry extends Model
             return $updatedAt->locale('es')->diffForHumans();
         }
     }
-
-    public function images()
-    {
-        return $this->hasMany(Image::class);
-    }
 }
