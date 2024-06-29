@@ -14,7 +14,8 @@
                 @endif
             </button>
         </form>
-        <img src="{{ Voyager::image($publicacion->image) }}" alt="{{$publicacion->image}}">
+
+        <a id="openModalBtn"><img src="{{ Voyager::image($publicacion->image) }}" alt="{{$publicacion->image}}"></a>
     </div>
     <div class="product-details">
         <h1 class="product-title">{{ $publicacion->title }}</h1>
@@ -34,11 +35,7 @@
                     href="{{ route('perfil', ['id' => $publicacion->user->id]) }}">{{ $publicacion->user->name }}</a>
             </p>
             <p class="product-description">{!! nl2br(strip_tags($publicacion->description)) !!}</p>
-            <!--  @php
-            $solicitudExistente = \App\Models\RequestedEntry::where('user_id', Auth::id())
-                ->where('entry_id', $publicacion->id)
-                ->first();
-        @endphp -->
+
             <form action="{{ route('solicitar', $publicacion->id) }}" method="POST">
                 @csrf
                 <button type="submit" class="btn-solicitud {{ $solicitudExistente ? 'btn-eliminar' : 'btn-enviar' }}">
@@ -62,4 +59,35 @@
         </div>
     @endforeach
 </div>
+
+<div id="modalEntryDetail" class="modal">
+    <span class="close">&times;</span>
+    @if ($publicacion->images)
+        <div id="carouselImages" class="carousel slide">
+            <div class="carousel-inner">
+                @php    $first = true; @endphp
+                @foreach (json_decode($publicacion->images, true) as $key => $image)
+                    <div class="carousel-item {{ $first ? 'active' : '' }}">
+                        <img src="{{ Voyager::image($image) }}" class="d-block w-100" alt="Image {{ $key }}">
+                    </div>
+                    @php        $first = false; @endphp
+                @endforeach
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselImages" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    @else
+        <img src="{{ Voyager::image($publicacion->image) }}" id="modalImg" class="modal-image" alt="...">
+    @endif
+
+</div>
+
 @endsection
+
+

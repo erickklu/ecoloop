@@ -3,7 +3,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '../sass/app.scss';
 import Swal from 'sweetalert2';
 
-window.toggleNavbar = function() {
+window.toggleNavbar = function () {
     const navbarMenu = document.getElementById('navbarMenu');
     if (navbarMenu) {
         navbarMenu.classList.toggle('show');
@@ -96,3 +96,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+var modal = document.getElementById("modalEntryDetail");
+
+var btn = document.getElementById("openModalBtn");
+
+var span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function () {
+    modal.style.display = "block";
+}
+
+span.onclick = function () {
+    modal.style.display = "none";
+}
+
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+

@@ -45,7 +45,7 @@
 
     <div style="clear:both"></div>
 
-    @if(!$errors->isEmpty())
+   <!--  @if(!$errors->isEmpty())
         <div class="alert alert-red">
             <ul class="list-unstyled">
                 @foreach($errors->all() as $err)
@@ -53,8 +53,15 @@
                 @endforeach
             </ul>
         </div>
+    @endif -->
+    @if(!$errors->isEmpty())
+        <div class="alert alert-red">
+            <ul class="list-unstyled">
+                <li>Error de autenticación. Correo o contraseña incorrectos</li>
+            </ul>
+        </div>
     @endif
-
+   
 </div> 
 @endsection
 
