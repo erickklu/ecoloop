@@ -11,35 +11,34 @@ class FavoriteController extends Controller
 {
     public function add($id)
     {
-
-        if (!Auth::user()->hasVerifiedEmail()) {
-            
-            return redirect()->route('verification.notice')->withErrors([
-                'email' => 'Debe verificar su dirección de correo electrónico antes de iniciar sesión.'
-            ]);
-        }
-
         if (auth()->check()) {
-            $userId = Auth::id();
+            if (Auth::user()->hasVerifiedEmail()) {
+                $userId = Auth::id();
 
-            $favoriteExistente = Favorite::where('user_id', $userId)
-                ->where('entry_id', $id)
-                ->first();
+                $favoriteExistente = Favorite::where('user_id', $userId)
+                    ->where('entry_id', $id)
+                    ->first();
 
-            if ($favoriteExistente) {
-                $favoriteExistente->delete();
+                if ($favoriteExistente) {
+                    $favoriteExistente->delete();
+                } else {
+                    Favorite::create([
+                        'user_id' => $userId,
+                        'entry_id' => $id
+                    ]);
+                }
+                return back();
             } else {
-                Favorite::create([
-                    'user_id' => $userId,
-                    'entry_id' => $id
+                return redirect()->route('verification.notice')->withErrors([
+                    'email' => 'Debe verificar su dirección de correo electrónico antes de iniciar sesión.'
                 ]);
             }
-            return back();
         } else {
-
             return redirect()->route('voyager.login');
         }
     }
+
+    
     public function misFavoritos()
     {
         $usuario = auth()->user();
