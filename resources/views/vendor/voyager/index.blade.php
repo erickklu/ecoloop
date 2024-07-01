@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="page-content">
-    @include('voyager::alerts')
     @include('voyager::dimmers')
     <div style="padding-left:20px;" class="tutorial">
         <h1>Bienvenido a EcoLoop!</h1>
