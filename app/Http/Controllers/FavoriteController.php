@@ -12,6 +12,13 @@ class FavoriteController extends Controller
     public function add($id)
     {
 
+        if (!Auth::user()->hasVerifiedEmail()) {
+            
+            return redirect()->route('verification.notice')->withErrors([
+                'email' => 'Debe verificar su dirección de correo electrónico antes de iniciar sesión.'
+            ]);
+        }
+
         if (auth()->check()) {
             $userId = Auth::id();
 

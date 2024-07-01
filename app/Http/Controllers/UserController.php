@@ -25,6 +25,14 @@ class UserController extends VoyagerBaseController
 
     public function calificar(Request $request, $id)
     {
+
+        if (!Auth::user()->hasVerifiedEmail()) {
+            
+            return redirect()->route('verification.notice')->withErrors([
+                'email' => 'Debe verificar su dirección de correo electrónico antes de iniciar sesión.'
+            ]);
+        }
+        
         if (Auth::check()) {
             $request->validate([
                 'rating' => 'required|integer|between:1,5',

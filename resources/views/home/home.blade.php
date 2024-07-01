@@ -4,21 +4,14 @@
 <div class="home-detail-container">
 
     <div class="home-details">
-        <h1 class="home-title">About</h1>
-        <p class="home-subtitle">Subheading for description or instructions</p>
-        <p class="home-description">Body text for your whole article or post. We’ll put in some lorem ipsum to show
-            how a filled-out page might look:
-
-            Excepteur efficient emerging, minim veniam anim aute carefully curated Ginza conversation exquisite perfect
-            nostrud nisi intricate Content. Qui international first-class nulla ut. Punctual adipisicing, essential
-            lovely queen tempor eiusmod irure. Exclusive izakaya charming Scandinavian impeccable aute quality of life
-            soft power pariatur Melbourne occaecat discerning. Qui wardrobe aliquip, et Porter destination Toto
-            remarkable officia Helsinki excepteur Basset hound. Zürich sleepy perfect consectetur.</p>
-
+        <h1 class="home-title">Bienvenido a EcoLoop!</h1>
+        <p class="home-subtitle">Jardin Botanico Padre Julio Marrero</p>
+        <p class="home-description">Es el primer Jardín Botánico del Ecuador acreditado por Botanic Gardens Conservation
+            International. Este es el resultado de una evaluación a las acciones en investigación científica, colecciones de plantas,
+            conservación de especies, horticultura, educación, cultura y especialmente en el trabajo que busca continuamente integrar a la comunidad.</p>
     </div>
     <div class="home-image">
-        <img src="{{ asset('storage/Jardin-Botanico-3.jpg') }}" alt="Jardín Botánico">
-
+        <img src="{{ asset('storage/Jardin-Botanico.jpg') }}" alt="Jardín Botánico">
     </div>
 </div>
 @endsection

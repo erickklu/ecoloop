@@ -89,6 +89,9 @@ class AuthController extends Controller
     {
         $user = Auth::user();
 
+        if (!$user) {
+            return redirect()->route('voyager.login')->with('error', 'Debes estar autenticado para realizar esta acción.');
+        }
 
         if ($user->hasVerifiedEmail()) {
             return redirect()->route('home')->with('message', 'Tu correo ya está verificado.');
@@ -104,8 +107,6 @@ class AuthController extends Controller
             $message->to($user->email);
             $message->subject('Verificación de correo electrónico');
         });
-
-
 
         return redirect()->route('verification.notice')->with('message', 'Se ha enviado un nuevo correo de verificación.');
     }
