@@ -17,8 +17,7 @@ class EmailIsVerified
     public function handle(Request $request, Closure $next)
     {
 
-        if (Auth::check() && Auth::user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail &&
-            !Auth::user()->hasVerifiedEmail()) {
+        if (Auth::check() && !Auth::user()->hasVerifiedEmail()) {
 
             return redirect()->route('verification.notice')->withErrors([
                 'email' => 'Debe verificar su dirección de correo electrónico antes de iniciar sesión.'

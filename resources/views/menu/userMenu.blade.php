@@ -1,6 +1,6 @@
 <nav class="navbar">
     <div class="navbar-brand">
-        <a href="#">EcoLoop</a>
+        <a>EcoLoop</a>
     </div>
     <div class="navbar-toggle" onclick="toggleNavbar()" aria-label="Toggle navigation">
         &#9776; 
