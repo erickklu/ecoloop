@@ -107,10 +107,14 @@
                             </a>
                         </div>
             @endforeach
+            
         </div>
         <div class="d-flex justify-content-center mt-4">
-            {{ $publicaciones->links('pagination::bootstrap-5') }}
-        </div>
+                {{ $publicaciones->links('pagination::bootstrap-5') }}
+            </div>
+
     </div>
+
 </div>
+
 @endsection
