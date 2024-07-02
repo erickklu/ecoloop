@@ -15,11 +15,9 @@
                 en
                 el
                 menú lateral para acceder a esta funcionalidad.</p>
-            <div style="width:100%; display:flex; align-items:center;justify-content:center;" class="images-tutorial">
-                <img src="{{ asset('storage/tutorials/Publicación-item.png') }}" alt="Publicaciones"
-                    style="width:auto; height:30vh; margin-bottom:20px; margin-right:10%; border-radius:8px;">
-                <img src="{{ asset('storage/tutorials/Publicación-panel.png') }}" alt="Publicaciones"
-                    style="width:auto; height:30vh; margin-bottom:20px; border-radius:8px;">
+            <div class="images-tutorial">
+                <img src="{{ asset('storage/tutorials/Publicación-item.png') }}" alt="Publicaciones">
+                <img src="{{ asset('storage/tutorials/Publicación-panel.png') }}" alt="Publicaciones">
             </div>
         </div>
         <div class="requested-tutorial"
@@ -30,11 +28,9 @@
                 ver
                 la publicación solicitada y el perfil del usuario que realizó la petición.</p>
 
-            <div style="width:100%; display:flex; align-items:center;justify-content:center;" class="images-tutorial">
-                <img src="{{ asset('storage/tutorials/Requested-item.png') }}" alt="Publicaciones"
-                    style="width:auto; height:30vh; margin-bottom:20px; margin-right:10%; border-radius:8px;">
-                <img src="{{ asset('storage/tutorials/Requested-panel.png') }}" alt="Publicaciones"
-                    style="width:auto; height:30vh; margin-bottom:20px; border-radius:8px;">
+            <div class="images-tutorial">
+                <img src="{{ asset('storage/tutorials/Requested-item.png') }}" alt="Publicaciones">
+                <img src="{{ asset('storage/tutorials/Requested-panel.png') }}" alt="Publicaciones">
             </div>
         </div>
         <div class="profile-tutorial"
@@ -43,11 +39,9 @@
             <p>Accede al perfil desde el menú desplegable en la esquina superior derecha para ver y editar tu
                 información.
             </p>
-            <div style="width:100%; display:flex; align-items:center;justify-content:center;" class="images-tutorial">
-                <img src="{{ asset('storage/tutorials/Profile-item.png') }}" alt="Publicaciones"
-                    style="width:auto; height:30vh; margin-bottom:20px; margin-right:10%; border-radius:8px;">
-                <img src="{{ asset('storage/tutorials/Profile-panel.png') }}" alt="Publicaciones"
-                    style="width:auto; height:30vh; margin-bottom:20px; border-radius:8px;">
+            <div class="images-tutorial">
+                <img src="{{ asset('storage/tutorials/Profile-item.png') }}" alt="Publicaciones">
+                <img src="{{ asset('storage/tutorials/Profile-panel.png') }}" alt="Publicaciones">
             </div>
         </div>
         <div class="home-tutorial"
@@ -56,16 +50,40 @@
             <p>La "Página de Inicio" te muestra las publicaciones de otros usuarios y permite realizar peticiones,
                 agregar a
                 favoritos, etc.</p>
-            <div style="width:100%; display:flex; align-items:center;justify-content:center;" class="images-tutorial">
-                <img src="{{ asset('storage/tutorials/Home-item.png') }}" alt="Publicaciones"
-                    style="width:auto; height:30vh; margin-bottom:20px; margin-right:10%; border-radius:8px;">
-                <img src="{{ asset('storage/tutorials/Home-panel.png') }}" alt="Publicaciones"
-                    style="width:auto; height:30vh; margin-bottom:20px; border-radius:8px;">
+            <div class="images-tutorial">
+                <img src="{{ asset('storage/tutorials/Home-item.png') }}" alt="Publicaciones">
+                <img src="{{ asset('storage/tutorials/Home-panel.png') }}" alt="Publicaciones">
             </div>
         </div>
     </div>
 
 </div>
+@stop
+
+@section('css')
+<style>
+    .images-tutorial {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .images-tutorial img {
+        max-width: 45%;
+        width: auto;
+        height: auto;
+        margin: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+        .images-tutorial img {
+            max-width: 90%;
+            margin: 5px 0;
+        }
+    }
+</style>
 @stop
 
 @section('javascript')
