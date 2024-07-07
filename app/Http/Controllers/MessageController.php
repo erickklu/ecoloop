@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
+    function chatView()
+    {
+        return view("messages.chat");
+    }
+
     function sendMessage(Request $request)
     {
 
@@ -17,7 +22,7 @@ class MessageController extends Controller
         $message->receiver_id = $request->receiver_id;
         $message->message = $request->message;
         $message->save();
-        
+
         event(new MessageSent($message));
     }
 }
