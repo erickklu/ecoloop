@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EntryController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\RequestedEntryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -47,12 +48,5 @@ Route::get('/email/verify', function () {
 
 Route::post('/email/resend', [AuthController::class, 'resendVerificationEmail'])->name('verification.resend');
 
-
-
-/* Route::get('/test-email', function () {
-    Mail::raw('Test email', function($message) {
-        $message->to('mario_morenor@hotmail.com')
-                ->subject('Test Email');
-    });
-    return 'Email sent';
-}); */
+Route::get("chat", [MessageController::class, "chatView"])->name("chat.view");
+Route::post("/send-message", [MessageController::class, "sendMessage"])->name("send.message");
