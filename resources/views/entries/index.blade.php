@@ -3,7 +3,7 @@
 
 @section("content")
 <div class="content-wrapper">
-    <div class="categories-container">
+    <div id="categories-container" class="categories-container">
         <div class="container-title-categories">
             <h4 class="title-text-category">Categorias</h4>
         </div>
