@@ -23,6 +23,14 @@
             </div>
         </div>
 
+        <div class="form-group form-group-default" id="wtspGroup">
+            <label>Numero de Whatsapp</label>
+            <div class="controls">
+                <input type="number" name="whatsapp" id="whatsapp" placeholder="Whatsapp"
+                    class="form-control" required>
+            </div>
+        </div>
+
         <div class="form-group form-group-default" id="passwordGroup">
             <label>Contraseña</label>
             <div class="controls">

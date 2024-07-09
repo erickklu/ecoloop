@@ -3,12 +3,12 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '../sass/app.scss';
 import Swal from 'sweetalert2';
 
-/* window.toggleNavbar = function () {
+window.toggleNavbar = function () {
     const navbarMenu = document.getElementById('navbarMenu');
     if (navbarMenu) {
         navbarMenu.classList.toggle('show');
     }
-} */
+}
 
 function showToast(message, icon = 'success') {
     const Toast = Swal.mixin({
@@ -117,7 +117,7 @@ window.onclick = function (event) {
     }
 }
 
-/* window.addEventListener('scroll', function () {
+window.addEventListener('scroll', function () {
     const sidebar = document.getElementById('categories-container');
     const footer = document.getElementById('footer');
     const sidebarHeight = sidebar.offsetHeight;
@@ -131,4 +131,4 @@ window.onclick = function (event) {
         sidebar.style.position = 'sticky';
         sidebar.style.top = '0';
     }
-}); */
+});

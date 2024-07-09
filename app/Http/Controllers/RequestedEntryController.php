@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RequestAcceptNotification;
 use App\Mail\RequestNotification;
 use App\Models\RequestedEntry;
 use Illuminate\Http\Request;
@@ -58,4 +59,15 @@ class RequestedEntryController extends VoyagerBaseController
         }
     }
 
+    function aceptar_solicitud(RequestedEntry $requestedEntry ) {
+        $requestedEntry->state = $requestedEntry->state=="PENDIENTE"?"CONFIRMADO":"PENDIENTE";
+        $requestedEntry->save();
+
+        if ($requestedEntry->state == "CONFIRMADO") {
+            Mail::to($requestedEntry->user->email)->send(new RequestAcceptNotification($requestedEntry));
+        }
+
+        return redirect()->route("voyager.requested_entries.index");
+
+    }
 }
