@@ -29,6 +29,10 @@
             padding: 10px;
             border-radius: 8px;
         }
+
+        a {
+            text-decoration: none;
+        }
     </style>
 </head>
 

@@ -29,6 +29,10 @@
             padding: 10px;
             border-radius: 8px;
         }
+
+        a {
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -42,9 +46,7 @@
         <div class="btn-container">
             <a class="btn-verify" href="{{ route('verification.verify', ['token' => $token]) }}">Verificar Correo</a>
         </div>
-
     </div>
-
 </body>
 
 </html>
