@@ -143,15 +143,9 @@
         }
 
         &.disabled {
-            background-color: #ea975b;
+            opacity: .75;
             cursor: not-allowed;
-
-            &:hover {
-                background-color: #ea975b;
-            }
         }
-
-
     }
 }
 
