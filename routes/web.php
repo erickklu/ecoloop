@@ -50,7 +50,4 @@ Route::get('/email/verify', function () {
 
 Route::post('/email/resend', [AuthController::class, 'resendVerificationEmail'])->name('verification.resend');
 
-Route::get("chat", [MessageController::class, "chatView"])->name("chat.view");
-Route::post("/send-message", [MessageController::class, "sendMessage"])->name("send.message");
-
 Route::get("/aceptar-solicitud/{requestedEntry}", [RequestedEntryController::class, "aceptar_solicitud"])->name("soli");
