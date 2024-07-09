@@ -59,12 +59,16 @@ class RequestedEntryController extends VoyagerBaseController
         }
     }
 
-    function aceptar_solicitud(RequestedEntry $requestedEntry ) {
-        $requestedEntry->state = $requestedEntry->state=="PENDIENTE"?"CONFIRMADO":"PENDIENTE";
+    function aceptar_solicitud(RequestedEntry $requestedEntry)
+    {
+        $requestedEntry->state = $requestedEntry->state == "PENDIENTE" ? "CONFIRMADO" : "PENDIENTE";
         $requestedEntry->save();
 
+        $whatsappNumber = ltrim($requestedEntry->user->whatsapp, '0'); 
+        $whatsappLink = "https://api.whatsapp.com/send?phone=593" . $whatsappNumber;
+
         if ($requestedEntry->state == "CONFIRMADO") {
-            Mail::to($requestedEntry->user->email)->send(new RequestAcceptNotification($requestedEntry));
+            Mail::to($requestedEntry->user->email)->send(new RequestAcceptNotification($requestedEntry, $whatsappLink));
         }
 
         return redirect()->route("voyager.requested_entries.index");

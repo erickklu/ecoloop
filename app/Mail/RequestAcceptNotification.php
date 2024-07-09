@@ -19,11 +19,10 @@ class RequestAcceptNotification extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(RequestedEntry $requestedEntry)
+    public function __construct(RequestedEntry $requestedEntry, $whatsappLink)
     {
         $this->requestedEntry = $requestedEntry;
-        $entryOwner = $requestedEntry->entry->user;
-        $this->whatsappLink = "https://wa.me/{$entryOwner->whatsapp}";
+        $this->whatsappLink = $whatsappLink;
     }
 
     /**

@@ -35,7 +35,12 @@ class AuthController extends Controller
                     }
                 }
             ],
-            'whatsapp' => ['required', 'string', 'max:255'],
+            'whatsapp' => [
+                'required',
+                'string',
+                'regex:/^09[0-9]{8}$/',
+                'max:10'
+            ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ], [
             'name.required' => 'El nombre es obligatorio.',
@@ -45,6 +50,8 @@ class AuthController extends Controller
             'password.required' => 'La contraseña es obligatoria.',
             'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
             'password.confirmed' => 'La confirmación de la contraseña no coincide.',
+            'whatsapp.required' => 'El número de WhatsApp es obligatorio.',
+            'whatsapp.regex' => 'El número de WhatsApp debe ser válido y comenzar con 09.',
         ]);
 
         $validator->validate();
