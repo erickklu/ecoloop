@@ -66,6 +66,11 @@
                                        value="{{ old('email_verified_at', isset($dataTypeContent->email_verified_at) ? \Carbon\Carbon::parse($dataTypeContent->email_verified_at)->format('Y-m-d\TH:i') : '') }}">
                             </div>
 
+                            <div class="form-group">
+                                <label for="whatsapp">Numero de Whatsapp</label>
+                                <input type="number" class="form-control" id="whatsapp" name="whatsapp" value="" autocomplete="new-whatsapp">
+                            </div>
+
                             @can('editRoles', $dataTypeContent)
                                 <div class="form-group">
                                     <label for="default_role">{{ __('voyager::profile.role_default') }}</label>
