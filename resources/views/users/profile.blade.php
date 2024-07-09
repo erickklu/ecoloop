@@ -26,7 +26,7 @@
                 <div class="rating-form">
                     <form action="{{ route('calificar', $usuario->id) }}" method="POST" id="ratingForm">
                         @csrf
-                        <label for="rating">Califica este usuario:</label>
+                        <!-- <label for="rating">Califica este usuario:</label> -->
                         <div class="rating">
                             @for ($i = 5; $i >= 1; $i--)
                                 <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}" {{ $rate && $rate->stars == $i ? 'checked' : '' }} />

@@ -170,7 +170,9 @@
 }
 
 .rating-form {
-    margin-top: 20px;
+    margin-top: 10px;
+    /* border-top: 2px solid rgba(0, 0, 0, 0.1); */
+
 
     .rating {
         display: flex;
@@ -220,15 +222,17 @@
         font-size: 1em;
         color: #fff;
         background-color: #ABC270;
-        border-radius: 4px;
+        border-radius: 50px;
         text-align: center;
         text-decoration: none;
         transition: background-color 0.3s;
         width: 100%;
         box-sizing: border-box;
         height: 30px;
-        line-height: 32px;
         border: none;
+        padding: 20px;
+        line-height:25%;
+        margin-top: 4px;
 
         &:hover {
             background-color: #9fba5d;
