@@ -89,7 +89,7 @@ class RequestedEntryAcceptAction extends AbstractAction
 
     public function getIcon()
     {
-        return $this->data->{'state'}=="PENDIENTE"?'voyager-x':'voyager-external';
+        return $this->data->{'state'}=="PENDIENTE"?'voyager-check':'voyager-external';
     }
 
 
