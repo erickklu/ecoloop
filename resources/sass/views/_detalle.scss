@@ -141,6 +141,17 @@
                 background-color: #ea975b;
             }
         }
+
+        &.disabled {
+            background-color: #ea975b;
+            cursor: not-allowed;
+
+            &:hover {
+                background-color: #ea975b;
+            }
+        }
+
+
     }
 }
 
@@ -241,35 +252,40 @@ a {
 
 // Modal
 
-#openModalBtn{
+#openModalBtn {
     cursor: pointer;
 }
 
 .modal {
-    display: none; 
-    position: fixed; 
+    display: none;
+    position: fixed;
     z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: none; 
-    background-color: rgba(0, 0, 0, 0.4); 
-    transition: all 0.3s ease-in-out; 
+    overflow: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease-in-out;
 }
 
 .modal-image {
-    max-width: 90%; 
-    max-height: 90%; 
+    max-width: 90%;
+    max-height: 90%;
     object-fit: contain;
-    margin: 2% auto; 
-    display: block; 
-   /*  border-radius: 8px; */
+    margin: 2% auto;
+    display: block;
+    /*  border-radius: 8px; */
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .close {
@@ -277,7 +293,7 @@ a {
     float: right;
     margin-right: 6.7%;
     font-size: 45px;
-    font-weight:260;
+    font-weight: 260;
     cursor: pointer;
 }
 
@@ -289,23 +305,28 @@ a {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 // Carrusel
 
 #carouselImages {
-    margin-top: 5%; 
+    margin-top: 5%;
 }
 
 #carouselImages .carousel-inner {
-    max-height: 80vh; 
+    max-height: 80vh;
 }
 
 #carouselImages .carousel-item img {
-    max-height: 80vh; 
-    width: auto; 
-    margin: 0 auto; 
-    object-fit: contain; 
+    max-height: 80vh;
+    width: auto;
+    margin: 0 auto;
+    object-fit: contain;
 }

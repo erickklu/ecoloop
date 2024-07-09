@@ -38,7 +38,8 @@
 
             <form action="{{ route('solicitar', $publicacion->id) }}" method="POST">
                 @csrf
-                <button type="submit" class="btn-solicitud {{ $solicitudExistente ? 'btn-eliminar' : 'btn-enviar' }}">
+                <button type="submit" class="btn-solicitud {{ $solicitudExistente ? 'btn-eliminar' : 'btn-enviar' }} {{ Auth::id() == $publicacion->user->id ? 'disabled' : '' }}" 
+                        {{ Auth::id() == $publicacion->user->id ? 'disabled' : '' }}>
                     {{ $solicitudExistente ? 'Eliminar solicitud' : 'Enviar solicitud' }}
                 </button>
             </form>
