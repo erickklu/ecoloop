@@ -35,6 +35,7 @@ class AuthController extends Controller
                     }
                 }
             ],
+            'whatsapp' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ], [
             'name.required' => 'El nombre es obligatorio.',
@@ -51,6 +52,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'whatsapp' => $request->whatsapp,
             'password' => Hash::make($request->password),
         ]);
 

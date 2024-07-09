@@ -84,13 +84,14 @@ class RequestedEntryAcceptAction extends AbstractAction
 
     public function getTitle()
     {
-        return 'Aceptar Solicitud';
+        return $this->data->{'state'}=="PENDIENTE"?'Confirmar Solicitud':'Cambiar a Pendiente';
     }
 
     public function getIcon()
     {
-        return 'voyager-ship';
+        return $this->data->{'state'}=="PENDIENTE"?'voyager-x':'voyager-external';
     }
+
 
     public function getPolicy()
     {
@@ -106,7 +107,7 @@ class RequestedEntryAcceptAction extends AbstractAction
 
     public function getDefaultRoute()
     {
-        return route('soli', ["id" => $this->data->id]);
+        return route('soli', ["requestedEntry" => $this->data->id]);
     }
 
     public function shouldActionDisplayOnDataType()

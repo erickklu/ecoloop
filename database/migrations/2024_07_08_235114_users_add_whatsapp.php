@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('requested_entries', function (Blueprint $table) {
-            $table->string('state')->default("PENDIENTE");
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('whatsapp');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('requested_entries', function (Blueprint $table) {
-            $table->dropColumn('state');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('whatsapp');
         });
     }
 };
