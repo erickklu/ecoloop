@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\VoyagerActions\RequestedEntryAcceptAction;
 use App\VoyagerActions\RequestedEntryAction;
 use App\VoyagerActions\RequestedEntryUserAction;
 use Illuminate\Support\ServiceProvider;
@@ -31,5 +32,6 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap(); */
         Voyager::addAction(RequestedEntryAction::class);
         Voyager::addAction(RequestedEntryUserAction::class);
+        Voyager::addAction(RequestedEntryAcceptAction::class);
     }
 }

@@ -58,4 +58,14 @@ class RequestedEntryController extends VoyagerBaseController
         }
     }
 
+    function aceptar_solicitud(RequestedEntry $id ) {
+        
+        $id->state = "asdasdsa";
+        $id->save();
+
+        // ENVIO DEL CORREO
+
+        return redirect()->route("home");
+
+    }
 }

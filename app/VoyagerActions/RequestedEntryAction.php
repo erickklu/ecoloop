@@ -68,7 +68,45 @@ class RequestedEntryUserAction extends AbstractAction
 
     public function getDefaultRoute()
     {
-        return route('perfil',["id"=>$this->data->user_id]);
+        return route('perfil', ["id" => $this->data->user_id]);
+    }
+
+    public function shouldActionDisplayOnDataType()
+    {
+        return $this->dataType->slug == 'requested_entries';
+    }
+}
+
+
+
+class RequestedEntryAcceptAction extends AbstractAction
+{
+
+    public function getTitle()
+    {
+        return 'Aceptar Solicitud';
+    }
+
+    public function getIcon()
+    {
+        return 'voyager-ship';
+    }
+
+    public function getPolicy()
+    {
+        return;
+    }
+
+    public function getAttributes()
+    {
+        return [
+            'class' => 'btn btn-sm btn-warning',
+        ];
+    }
+
+    public function getDefaultRoute()
+    {
+        return route('soli', ["id" => $this->data->id]);
     }
 
     public function shouldActionDisplayOnDataType()

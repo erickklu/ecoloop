@@ -25,6 +25,8 @@ Route::get('/', function () {
 })->name("home");
 
 
+
+
 Route::get('/publicaciones', [EntryController::class, 'ViewEntries'])->name('publicaciones');
 Route::get('/publicaciones/{id}', [EntryController::class, 'DetailEntry'])->name('publicaciones.detalle');
 Route::get('/publicaciones/categoria/{id}', [EntryController::class, 'filterByCategory'])->name('publicaciones.categoria');
@@ -50,3 +52,5 @@ Route::post('/email/resend', [AuthController::class, 'resendVerificationEmail'])
 
 Route::get("chat", [MessageController::class, "chatView"])->name("chat.view");
 Route::post("/send-message", [MessageController::class, "sendMessage"])->name("send.message");
+
+Route::get("/aceptar-solicitud/{id}", [RequestedEntryController::class, "aceptar_solicitud"])->name("soli");
