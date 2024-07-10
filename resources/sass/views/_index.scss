@@ -197,16 +197,21 @@
     top: 148px;
     width: 370px;
     height: auto;
-    max-height: 100vh;
+    /* max-height: 100vh; */
+    max-height: calc(100vh - 148px);
     overflow-y: auto;
-    padding-right: 25px;
-    /* padding-top: 20px; */
+    padding-right: 13px;
+    
+
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff00 transparent;
 
 
     @media (max-width: 992px) {
         display: flex;
         position: static;
         height: auto;
+        max-height: 100vh;
         width: 100%;
         flex-direction: column;
         gap: 15px;
