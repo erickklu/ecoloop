@@ -64,7 +64,9 @@ class RequestedEntryController extends VoyagerBaseController
         $requestedEntry->state = $requestedEntry->state == "PENDIENTE" ? "CONFIRMADO" : "PENDIENTE";
         $requestedEntry->save();
 
-        $whatsappNumber = ltrim($requestedEntry->user->whatsapp, '0'); 
+        $owner = $requestedEntry->entry->user;
+
+        $whatsappNumber = ltrim($owner->whatsapp, '0'); 
         $whatsappLink = "https://api.whatsapp.com/send?phone=593" . $whatsappNumber;
 
         if ($requestedEntry->state == "CONFIRMADO") {
