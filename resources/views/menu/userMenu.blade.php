@@ -3,29 +3,30 @@
         <a>EcoLoop</a>
     </div>
     <div class="navbar-toggle" onclick="toggleNavbar()" aria-label="Toggle navigation">
-        &#9776; 
+        &#9776;
     </div>
-    
+
     <ul class="navbar-menu" id="navbarMenu">
         @foreach ($items as $item)
-            @php
-                $originalItem = $item;
-                if (Voyager::translatable($item)) {
-                    $item = $item->translate($options->locale);
-                }
-            @endphp
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url($item->link()) }}" target="{{ $item->target }}">
-                    {{ $item->title }}
-                </a>
-                @if (!$originalItem->children->isEmpty())
-                    @include('voyager::menu.default', ['items' => $originalItem->children, 'options' => $options])
-                @endif
-            </li>
+                @php
+                    $originalItem = $item;
+                    if (Voyager::translatable($item)) {
+                        $item = $item->translate($options->locale);
+                    }
+                @endphp
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url($item->link()) }}" target="{{ $item->target }}">
+                        {{ $item->title }}
+                    </a>
+                    @if (!$originalItem->children->isEmpty())
+                        @include('voyager::menu.default', ['items' => $originalItem->children, 'options' => $options])
+                    @endif
+                </li>
         @endforeach
         @if (Auth::check())
             <li class="nav-item dropdown">
-                <a class="nav-link login" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0;">
+                <a class="nav-link login" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                    style="padding: 0;">
                     <button class="nav-link login dropdown-toggle" type="submit">
                         Hola, {{ Auth::user()->name }}
                     </button>
@@ -40,8 +41,14 @@
                     <li>
                         <a class="dropdown-item" href="{{ route('voyager.entries.index')}}">Panel</a>
                     </li>
+                    @if (Auth::user()->role_id == 1)
+                        <li>
+                            <a class="dropdown-item" href="{{ route('reportes')}}">Ver Reporte</a>
+                        </li>
+                    @endif
                     <li>
-                        <a style="color:red;" class="dropdown-item" href="{{ route('voyager.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        <a style="color:red;" class="dropdown-item" href="{{ route('voyager.logout') }}"
+                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                             Cerrar sesión
                         </a>
                     </li>

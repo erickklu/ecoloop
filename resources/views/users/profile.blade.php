@@ -38,6 +38,23 @@
                 </div>
             @endif
         </div>
+        <div class="user-reports">
+            <div class="card-reports">
+                <i class="bi bi-arrow-left-right"></i>
+                <p class="card-report-title">Productos intercambiados</p>
+                <p class="countEntries">{{ $intercambiados }}</p>
+            </div>
+            <div class="card-reports">
+                <i class="bi bi-shop-window"></i>
+                <p class="card-report-title">Productos vendidos</p>
+                <p class="countEntries">{{ $vendidos }}</p>
+            </div>
+            <div class="card-reports">
+                <i class="bi bi-bag-heart"></i>
+                <p class="card-report-title">Productos donados</p>
+                <p class="countEntries">{{ $donados }}</p>
+            </div>
+        </div>
     </div>
     <div class="user-publications">
         <div class="cards-container">

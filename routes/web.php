@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EntryController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RequestedEntryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -51,3 +52,5 @@ Route::get('/email/verify', function () {
 Route::post('/email/resend', [AuthController::class, 'resendVerificationEmail'])->name('verification.resend');
 
 Route::get("/aceptar-solicitud/{requestedEntry}", [RequestedEntryController::class, "aceptar_solicitud"])->name("soli");
+
+Route::get('/reportes', [ReportController::class, 'generateReport'])->name('reportes');
