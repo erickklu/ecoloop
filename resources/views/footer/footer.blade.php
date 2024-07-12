@@ -5,8 +5,8 @@
         </h1>
     </div>
     <div class="logos-container">
-        <div class="logo-1">hola</div>
+        <!-- <div class="logo-1">hola</div>
         <div class="logo-2">hola</div>
-        <div class="logo-3">hola</div>
+        <div class="logo-3">hola</div> -->
     </div>
 </footer>

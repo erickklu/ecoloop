@@ -54,3 +54,7 @@ Route::post('/email/resend', [AuthController::class, 'resendVerificationEmail'])
 Route::get("/aceptar-solicitud/{requestedEntry}", [RequestedEntryController::class, "aceptar_solicitud"])->name("soli");
 
 Route::get('/reportes', [ReportController::class, 'generateReport'])->name('reportes');
+
+Route::get('/privacy-policy', function (){
+    return view('auth.privacy-policy');
+});

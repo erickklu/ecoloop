@@ -39,42 +39,48 @@
             @endif
         </div>
         <div class="user-reports">
-            <div class="card-reports">
+            <div style="background-color: #ABC270;"  class="card-reports">
                 <i class="bi bi-arrow-left-right"></i>
                 <p class="card-report-title">Productos intercambiados</p>
                 <p class="countEntries">{{ $intercambiados }}</p>
             </div>
-            <div class="card-reports">
+            <div style="background-color: #FEC868;" class="card-reports">
                 <i class="bi bi-shop-window"></i>
                 <p class="card-report-title">Productos vendidos</p>
                 <p class="countEntries">{{ $vendidos }}</p>
             </div>
-            <div class="card-reports">
+            <div style="background-color: #473C33;" class="card-reports">
                 <i class="bi bi-bag-heart"></i>
                 <p class="card-report-title">Productos donados</p>
                 <p class="countEntries">{{ $donados }}</p>
             </div>
         </div>
     </div>
-    <div class="user-publications">
-        <div class="cards-container">
-            @foreach ($publicaciones as $publicacion)
-                <div class="publicacion-card">
-                    <a href="{{ route('publicaciones.detalle', $publicacion->id) }}">
-                        <div class="image-container">
-                            <img src="{{ Voyager::image($publicacion->image) }}" alt="{{ $publicacion->title }}">
-                        </div>
-                        <div class="publicacion-content">
-                            <p class="publicacion-title">{{ $publicacion->title }}</p>
-                            <p class="publicacion-text">{{ $publicacion->category->name }}</p>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
+
+    @if($publicaciones->isEmpty())
+        <h4>No hay publicaciones para mostrar.</h4>
+    @else
+        <div class="user-publications">
+            <div class="cards-container">
+                @foreach ($publicaciones as $publicacion)
+                    <div class="publicacion-card">
+                        <a href="{{ route('publicaciones.detalle', $publicacion->id) }}">
+                            <div class="image-container">
+                                <img src="{{ Voyager::image($publicacion->image) }}" alt="{{ $publicacion->title }}">
+                            </div>
+                            <div class="publicacion-content">
+                                <p class="publicacion-title">{{ $publicacion->title }}</p>
+                                <p class="publicacion-text">{{ $publicacion->category->name }}</p>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                {{ $publicaciones->links('pagination::bootstrap-4') }}
+            </div>
         </div>
-        <div class="d-flex justify-content-center mt-4">
-            {{ $publicaciones->links('pagination::bootstrap-4') }}
-        </div>
-    </div>
+    @endif
+
 </div>
 @endsection

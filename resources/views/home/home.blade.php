@@ -2,9 +2,8 @@
 
 @section("content")
 <div class="home-detail-container">
-
     <div class="home-details">
-        <h1 class="home-title">Bienvenido a EcoLoop!</h1>
+        <h1 class="home-title">EcoLoop</h1>
         <p class="home-subtitle">Jardin Botanico Padre Julio Marrero</p>
         <p class="home-description">Es el primer Jardín Botánico del Ecuador acreditado por Botanic Gardens Conservation
             International. Este es el resultado de una evaluación a las acciones en investigación científica, colecciones de plantas,

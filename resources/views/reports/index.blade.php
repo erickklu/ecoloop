@@ -23,9 +23,9 @@
                 <p class="countEntries">{{ $donados }}</p>
             </div>
         </div>
-    <h2>Publicaciones Vendidas</h2>
+    <h2>Productos Vendidos</h2>
     @if($sold->isEmpty())
-        <p>No hay publicaciones vendidas.</p>
+        <p>No hay Productos vendidos.</p>
     @else
         <ul>
             @foreach($sold as $publication)
@@ -34,9 +34,9 @@
         </ul>
     @endif
 
-    <h2>Publicaciones Intercambiadas</h2>
+    <h2>Productos Intercambiados</h2>
     @if($exchanged->isEmpty())
-        <p>No hay publicaciones intercambiadas.</p>
+        <p>No hay Productos intercambiados.</p>
     @else
         <ul>
             @foreach($exchanged as $publication)
@@ -45,9 +45,9 @@
         </ul>
     @endif
 
-    <h2>Publicaciones Donadas</h2>
+    <h2>Productos Donados</h2>
     @if($donated->isEmpty())
-        <p>No hay publicaciones donadas.</p>
+        <p>No hay Productos donados.</p>
     @else
         <ul>
             @foreach($donated as $publication)
@@ -56,9 +56,9 @@
         </ul>
     @endif
 
-    <h2>Publicaciones Disponibles</h2>
+    <h2>Productos Disponibles</h2>
     @if($available->isEmpty())
-        <p>No hay publicaciones disponibles.</p>
+        <p>No hay Productos disponibles.</p>
     @else
         <ul>
             @foreach($available as $publication)

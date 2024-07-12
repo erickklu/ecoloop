@@ -95,18 +95,21 @@
                 i{
                     font-size: 25px;
                     font-weight: 600;
+                    color: white;
                 }
 
                 .card-report-title{
                     font-size: 13px;
                     margin: 0;
-                    color: #828282;
+                    /* color: #828282; */
+                    color: white;
                     font-weight: 500;
                 }
                 .countEntries{
                     margin: 0;
                     font-size: 23px;
                     font-weight: 700;
+                    color: white;
                 }
             }
 
@@ -127,7 +130,7 @@
     .user-publications {
         flex: 1;
         overflow-y: auto;
-        max-height: 100vh;
+        min-height: 100vh;
         padding-left: 20px;
 
         @media (max-width: 768px) {

@@ -1,7 +1,7 @@
 @extends('voyager::auth.master')
 
 @section('content')
-<div class="login-container" style="top: 40%;">
+<div class="login-container" style="top: 21%;">
     <p>Regístrate</p>
 
     <form action="{{ url('/register') }}" method="POST">
@@ -26,8 +26,7 @@
         <div class="form-group form-group-default" id="wtspGroup">
             <label>Numero de Whatsapp</label>
             <div class="controls">
-                <input type="number" name="whatsapp" id="whatsapp" placeholder="Whatsapp"
-                    class="form-control" required>
+                <input type="number" name="whatsapp" id="whatsapp" placeholder="Whatsapp" class="form-control" required>
             </div>
         </div>
 
@@ -44,6 +43,10 @@
                 <input type="password" name="password_confirmation" placeholder="Confirmar Contraseña"
                     class="form-control" required>
             </div>
+        </div>
+
+        <div class="form-group" id="checkGroup">
+            <label id="data_protection"> <input type="checkbox" name="data_protection" id="data_protection" required> Estoy de acuerdo con la <a href="/privacy-policy">política de privacidad</a>.</label>
         </div>
 
         <button type="submit" class="btn btn-block login-button">
@@ -69,41 +72,5 @@
             </ul>
         </div>
     @endif
-
 </div>
-@endsection
-
-@section('post_js')
-<script>
-    var btn = document.querySelector('button[type="submit"]');
-    var form = document.forms[0];
-    var email = document.querySelector('[name="email"]');
-    var password = document.querySelector('[name="password"]');
-
-    btn.addEventListener('click', function (ev) {
-        if (form.checkValidity()) {
-            btn.querySelector('.signingin').className = 'signingin';
-            btn.querySelector('.signin').className = 'signin hidden';
-        } else {
-            ev.preventDefault();
-        }
-    });
-
-    email.focus();
-    document.getElementById('emailGroup').classList.add("focused");
-
-    email.addEventListener('focusin', function () {
-        document.getElementById('emailGroup').classList.add("focused");
-    });
-    email.addEventListener('focusout', function () {
-        document.getElementById('emailGroup').classList.remove("focused");
-    });
-
-    password.addEventListener('focusin', function () {
-        document.getElementById('passwordGroup').classList.add("focused");
-    });
-    password.addEventListener('focusout', function () {
-        document.getElementById('passwordGroup').classList.remove("focused");
-    });
-</script>
 @endsection

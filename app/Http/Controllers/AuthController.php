@@ -51,7 +51,8 @@ class AuthController extends Controller
             'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
             'password.confirmed' => 'La confirmación de la contraseña no coincide.',
             'whatsapp.required' => 'El número de WhatsApp es obligatorio.',
-            'whatsapp.regex' => 'El número de WhatsApp debe ser válido y comenzar con 09.',
+            'whatsapp.regex' => 'El número de WhatsApp debe ser válido, por ejemplo: 0982331243.',
+            'data_protection.required' => 'Tienes que aceptar la política de privacidad.'
         ]);
 
         $validator->validate();
