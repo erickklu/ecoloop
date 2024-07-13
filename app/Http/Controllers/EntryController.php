@@ -77,8 +77,6 @@ class EntryController extends VoyagerBaseController
                 ->exists();
                 
             $favoritas = auth()->user()->favoriteEntries->pluck('id')->toArray();
-
-
         } else {
             $solicitudExistente = false;
             $favoritas = [];

@@ -7,6 +7,17 @@
     <meta name="success-message" content="{{ session('success') }}">
     <div class="user-info">
         <div class="user-details">
+            @if (Auth::id() == $usuario->id)
+                <div class="dropdown float-end">
+                    <button class="btn btn-sm btn-light" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                        aria-expanded="false"><i class="bi bi-three-dots"></i></button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a href="{{ route('voyager.users.edit', ['id' => $usuario->id]) }}" class="dropdown-item"
+                                placeholder="Editar">Editar mi perfil</a>
+                        </li>
+                    </ul>
+                </div>
+            @endif
             <img src="{{ Voyager::image($usuario->avatar) }}" class="avatar"
                 style="border-radius:50%; width:200px; height:200px; border:5px solid #fff;"
                 alt="{{ $usuario->name }} avatar">
@@ -39,7 +50,7 @@
             @endif
         </div>
         <div class="user-reports">
-            <div style="background-color: #ABC270;"  class="card-reports">
+            <div style="background-color: #ABC270;" class="card-reports">
                 <i class="bi bi-arrow-left-right"></i>
                 <p class="card-report-title">Productos intercambiados</p>
                 <p class="countEntries">{{ $intercambiados }}</p>
