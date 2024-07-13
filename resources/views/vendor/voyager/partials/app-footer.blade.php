@@ -3,7 +3,7 @@
         @if (rand(1,100) == 100)
             <i class="voyager-rum-1"></i> {{ __('voyager::theme.footer_copyright2') }}
         @else
-            {!! __('voyager::theme.footer_copyright') !!} <a href="http://thecontrolgroup.com" target="_blank">Erick Trejo y Ricardo Arias</a>
+            {!! __('voyager::theme.footer_copyright') !!} <a target="_blank">Erick Trejo y Ricardo Arias</a>
         @endif
         @php $version = Voyager::getVersion(); @endphp
         @if (!empty($version))
