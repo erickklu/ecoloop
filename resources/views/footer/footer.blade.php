@@ -5,8 +5,10 @@
         </h1>
     </div>
     <div class="logos-container">
-        <!-- <div class="logo-1">hola</div>
-        <div class="logo-2">hola</div>
-        <div class="logo-3">hola</div> -->
+        <img src="{{ asset('storage/logo-jardinbotanico.png') }}" alt="Jardín Botánico">
+        <img src="{{ asset('storage/logo-laudatosi.png') }}" alt="LAUDATO SI">
+        <img src="{{ asset('storage/logo-jesuitas.jpg') }}" alt="Jesuitas Ecuador">
+        <img src="{{ asset('storage/logo-pucesd.jpg') }}" alt="PUCE SD">
+
     </div>
 </footer>
