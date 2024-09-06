@@ -9,6 +9,5 @@
         <img src="{{ asset('storage/logo-laudatosi.png') }}" alt="LAUDATO SI">
         <img src="{{ asset('storage/logo-jesuitas.jpg') }}" alt="Jesuitas Ecuador">
         <img src="{{ asset('storage/logo-pucesd.jpg') }}" alt="PUCE SD">
-
     </div>
 </footer>
