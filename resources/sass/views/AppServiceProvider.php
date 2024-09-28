@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\VoyagerActions\RequestedEntryAcceptAction;
 use App\VoyagerActions\RequestedEntryAction;
 use App\VoyagerActions\RequestedEntryUserAction;
-use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use TCG\Voyager\Facades\Voyager;
@@ -23,12 +22,8 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(UrlGenerator $url): void
+    public function boot(): void
     {
-
-        if (env('APP_ENV') == 'production') {
-            $url->forceScheme('https');
-        }
         //
        /*  Paginator::defaultView('vendor.pagination.default'); */
         
